@@ -3,14 +3,19 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero() {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 1000], [0, 300]);
-  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
+  // Parallax translation
+  const bgY = useTransform(scrollY, [0, 1000], [0, 250]);
+  // Blijft eerst helder en fade daarna geleidelijk volledig weg naar 0 (100% achtergrondkleur)
+  const bgOpacity = useTransform(scrollY, [0, 250, 850], [1, 1, 0]);
+  // Content fades slightly earlier as you scroll away from the hero
+  const contentOpacity = useTransform(scrollY, [0, 450], [1, 0]);
+  const contentY = useTransform(scrollY, [0, 450], [0, -40]);
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center">
       {/* Background Image with Parallax */}
       <motion.div 
-        style={{ y: y1, opacity }}
+        style={{ y: bgY, opacity: bgOpacity }}
         className="absolute inset-0 z-0"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black z-10" />
@@ -22,7 +27,10 @@ export default function Hero() {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-20 text-center px-4 max-w-5xl mx-auto mt-20">
+      <motion.div 
+        style={{ opacity: contentOpacity, y: contentY }}
+        className="relative z-20 text-center px-4 max-w-5xl mx-auto mt-20"
+      >
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -60,7 +68,7 @@ export default function Hero() {
             Bekijk ons werk
           </a>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div 
