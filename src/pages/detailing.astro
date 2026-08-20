@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Detailing & Coating - Showroom Glans">
+  <Header />
+  
+  <main class="pt-20">
+    <!-- Service Hero -->
+    <div class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-10" />
+        <img 
+          src="https://images.unsplash.com/photo-1610928236780-e83296c0966a?q=80&w=1964&auto=format&fit=crop" 
+          alt="Auto Detailing en Keramische Coating" 
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">High-End <span class="text-gradient-gold">Detailing</span></h1>
+        <p class="text-xl text-gray-300 max-w-2xl mb-8">
+          Breng de originele glans terug of bescherm uw nieuwe auto met een hoogwaardige keramische coating (Gyeon / Modesta).
+        </p>
+        <a href="/contact" class="inline-block px-8 py-4 bg-gold-500 text-black font-bold rounded-sm hover:bg-gold-400 transition-colors">
+          Vraag offerte aan
+        </a>
+      </div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="py-24 bg-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div>
+            <h2 class="text-3xl font-bold text-white mb-6">Tot in de kleinste details</h2>
+            <div class="space-y-8">
+              <div>
+                <h3 class="text-xl font-semibold text-gold-500 mb-2">Lakcorrectie (Polijsten)</h3>
+                <p class="text-gray-400">Verwijder waskrassen (swirls), hologrammen en doffe plekken. Door middel van meerstaps polijsten brengen wij een diepe, spiegelachtige glans terug in de lak van uw auto.</p>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gold-500 mb-2">Keramische Coating (Glass Coating)</h3>
+                <p class="text-gray-400">Een extreem harde en waterafstotende beschermlaag die zich hecht aan de lak. Biedt jarenlange bescherming tegen weersinvloeden, vogelpoep, UV-straling en maakt het wassen van de auto aanzienlijk makkelijker.</p>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gold-500 mb-2">Interieur Detailing</h3>
+                <p class="text-gray-400">Dieptereiniging van leder, alcantara en stoffen bekleding. Ozonbehandeling tegen nare geurtjes en het voeden van kunststof delen voor die echte nieuwestaat beleving.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-zinc-900 p-8 rounded-lg border border-zinc-800 h-full flex flex-col justify-center">
+            <h3 class="text-2xl font-bold text-white mb-6">Onze Pakketten</h3>
+            <ul class="space-y-6">
+              <li class="border-b border-zinc-800 pb-6">
+                <h4 class="text-gold-500 font-semibold mb-2">Nieuwstaat Behandeling (New Car Prep)</h4>
+                <p class="text-gray-400 text-sm">Lichte lakcorrectie gevolgd door een premium keramische coating. Ideaal voor auto's direct uit de showroom om de lak te verzegelen.</p>
+              </li>
+              <li class="border-b border-zinc-800 pb-6">
+                <h4 class="text-gold-500 font-semibold mb-2">Correction & Protection</h4>
+                <p class="text-gray-400 text-sm">Uitgebreide lakcorrectie (meerdere stappen) voor auto's met gebruikssporen. Afgewerkt met een hoogwaardige coating voor de ultieme wet-look.</p>
+              </li>
+              <li>
+                <h4 class="text-gold-500 font-semibold mb-2">Interior Reset</h4>
+                <p class="text-gray-400 text-sm">Volledige stoomreiniging, leerbehandeling en bescherming (coating) van alle interieurdelen.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

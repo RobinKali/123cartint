@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero';
+import PortfolioGrid from '../components/PortfolioGrid.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout title="Premium Car Wrapping, Tinten & Detailing">
+  <Header />
+  
+  <main>
+    <Hero client:load />
+    
+    <section class="py-24 bg-zinc-950 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Uw Auto, <span class="text-gradient-gold">Onze Passie</span></h2>
+            <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+              Bij 123cartint geloven we dat een auto meer is dan slechts een vervoermiddel. Het is een verlengstuk van uw persoonlijkheid. Daarom behandelen we elk voertuig met de uiterste precisie en toewijding.
+            </p>
+            <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+              Of u nu op zoek bent naar de subtiele elegantie van geblindeerde ruiten, een complete kleurtransformatie door middel van car wrapping, of de ongeëvenaarde glans van keramische coating—wij bieden de premium kwaliteit die uw auto verdient.
+            </p>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center text-gray-200">
+                <svg class="h-6 w-6 text-gold-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Meer dan 10 jaar ervaring in het hoogste segment
+              </li>
+              <li class="flex items-center text-gray-200">
+                <svg class="h-6 w-6 text-gold-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Uitsluitend A-kwaliteit materialen (3M, Avery, Xpel)
+              </li>
+              <li class="flex items-center text-gray-200">
+                <svg class="h-6 w-6 text-gold-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                100% Tevredenheidsgarantie op al onze diensten
+              </li>
+            </ul>
+            <a href="/over-ons" class="text-gold-500 hover:text-gold-400 font-semibold inline-flex items-center transition-colors">
+              Lees meer over ons
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-tr from-gold-500/20 to-transparent rounded-lg blur-2xl"></div>
+            <img 
+              src="https://images.unsplash.com/photo-1619682817481-e994891cd1f5?q=80&w=2000&auto=format&fit=crop" 
+              alt="Detailing werkzaamheden" 
+              class="relative rounded-lg shadow-2xl border border-zinc-800"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <PortfolioGrid />
+    
+    <ContactForm />
+  </main>
+  
+  <Footer />
+</Layout>

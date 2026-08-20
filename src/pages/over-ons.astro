@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Over Ons - 123cartint">
+  <Header />
+  
+  <main class="pt-20">
+    <!-- Hero -->
+    <div class="relative h-[50vh] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-10" />
+        <img 
+          src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?q=80&w=2071&auto=format&fit=crop" 
+          alt="123cartint werkplaats" 
+          class="w-full h-full object-cover grayscale"
+        />
+      </div>
+      <div class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Onze <span class="text-gradient-gold">Passie</span></h1>
+        <p class="text-xl text-gray-300 max-w-2xl">
+          Gedreven door perfectie, gewijd aan de kunst van automotive styling.
+        </p>
+      </div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="py-24 bg-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div class="space-y-6 text-gray-300 text-lg leading-relaxed">
+            <h2 class="text-3xl font-bold text-white mb-6">Het Verhaal achter 123cartint</h2>
+            <p>
+              Wat begon als een voorliefde voor exclusieve auto's, is uitgegroeid tot dé referentie voor premium car wrapping, ramen tinten en high-end detailing. Bij 123cartint behandelen we elk voertuig alsof het ons eigen is.
+            </p>
+            <p>
+              Onze filosofie is simpel: <strong class="text-white">geen compromissen als het om kwaliteit gaat</strong>. Of het nu gaat om het blinderen van de ruiten van een gezinsauto voor extra comfort, of het volledig transformeren van een supercar met een custom wrap—ons team van gecertificeerde specialisten werkt met een obsessie voor detail.
+            </p>
+            <p>
+              We investeren continu in de nieuwste technieken, gereedschappen en materialen. Door uitsluitend te werken met A-merken zoals 3M, Avery Dennison, Xpel, en Gyeon garanderen wij een resultaat dat niet alleen visueel verbluffend is, maar ook jarenlang meegaat.
+            </p>
+            
+            <div class="pt-8 border-t border-zinc-800 flex items-center gap-6">
+              <div>
+                <span class="block text-4xl font-bold text-gold-500 mb-1">10+</span>
+                <span class="text-sm text-gray-400">Jaren Ervaring</span>
+              </div>
+              <div>
+                <span class="block text-4xl font-bold text-gold-500 mb-1">2.5K</span>
+                <span class="text-sm text-gray-400">Projecten</span>
+              </div>
+              <div>
+                <span class="block text-4xl font-bold text-gold-500 mb-1">100%</span>
+                <span class="text-sm text-gray-400">Tevredenheid</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <img src="https://images.unsplash.com/photo-1620882194639-6536b1319c5c?q=80&w=1000&auto=format&fit=crop" alt="Werkplaats detail 1" class="rounded-lg h-64 w-full object-cover border border-zinc-800" />
+            <img src="https://images.unsplash.com/photo-1599818815197-009779df34c6?q=80&w=1000&auto=format&fit=crop" alt="Werkplaats detail 2" class="rounded-lg h-64 w-full object-cover border border-zinc-800 mt-8" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

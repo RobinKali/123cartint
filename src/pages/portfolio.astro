@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import PortfolioGrid from '../components/PortfolioGrid.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Portfolio - Ons Werk">
+  <Header />
+  
+  <main class="pt-20">
+    <div class="bg-black py-20 text-center border-b border-zinc-900">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Ons <span class="text-gradient-gold">Portfolio</span></h1>
+      <p class="text-gray-400 text-xl max-w-3xl mx-auto px-4">
+        Ontdek een selectie van onze meest exclusieve projecten. Van subtiele raamtint tot complete transformaties, 
+        wij leveren uitsluitend perfectie.
+      </p>
+      
+      <!-- Filter placeholder -->
+      <div class="flex flex-wrap justify-center gap-4 mt-10 px-4">
+        <button class="px-6 py-2 rounded-full bg-gold-500 text-black font-semibold">Alle Projecten</button>
+        <button class="px-6 py-2 rounded-full border border-zinc-700 text-gray-300 hover:border-gold-500 hover:text-gold-500 transition-colors">Ramen Tinten</button>
+        <button class="px-6 py-2 rounded-full border border-zinc-700 text-gray-300 hover:border-gold-500 hover:text-gold-500 transition-colors">Car Wrapping</button>
+        <button class="px-6 py-2 rounded-full border border-zinc-700 text-gray-300 hover:border-gold-500 hover:text-gold-500 transition-colors">Detailing</button>
+      </div>
+    </div>
+    
+    <!-- We reuse the PortfolioGrid here. In a real app with Sanity, we might pass props to filter or just fetch all. -->
+    <div class="bg-zinc-950 pb-24">
+      <PortfolioGrid />
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

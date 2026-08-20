@@ -1,0 +1,51 @@
+---
+// Mock data placeholder for Sanity CMS
+const items = [
+  { title: 'Mat Zwart Wrap', category: 'Wrappen', brand: 'Porsche 911', imageUrl: 'https://images.unsplash.com/photo-1503376760367-15ea217a6963?q=80&w=2000&auto=format&fit=crop' },
+  { title: 'Keramische Coating', category: 'Detailing', brand: 'Audi RS6', imageUrl: 'https://images.unsplash.com/photo-1610928236780-e83296c0966a?q=80&w=1964&auto=format&fit=crop' },
+  { title: 'Ramen Tinten 20%', category: 'Tinten', brand: 'Mercedes G-Klasse', imageUrl: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=2000&auto=format&fit=crop' },
+  { title: 'Satin Grey Wrap', category: 'Wrappen', brand: 'BMW M4', imageUrl: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=2000&auto=format&fit=crop' },
+  { title: 'Interieur Reiniging', category: 'Detailing', brand: 'Range Rover', imageUrl: 'https://images.unsplash.com/photo-1600868133519-e39db5c5770b?q=80&w=2000&auto=format&fit=crop' },
+  { title: 'Chameleon Tint', category: 'Tinten', brand: 'VW Golf GTI', imageUrl: 'https://images.unsplash.com/photo-1621644788177-3367ee2763bd?q=80&w=2000&auto=format&fit=crop' },
+];
+---
+
+<section class="py-24 bg-zinc-950" id="portfolio">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Ons <span class="text-gradient-gold">Vakmanschap</span></h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">Een selectie van onze meest recente en exclusieve projecten. Perfectie tot in het kleinste detail.</p>
+    </div>
+
+    <!-- Masonry-like CSS Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[300px]">
+      {items.map((item, index) => {
+        // Make the first and fourth items span 2 rows and columns for a dynamic layout on larger screens
+        const isLarge = index === 0 || index === 3;
+        
+        return (
+          <div class={`group relative overflow-hidden rounded-lg bg-zinc-900 ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`}>
+            <img 
+              src={item.imageUrl} 
+              alt={item.title} 
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+              <span class="text-gold-500 font-medium text-sm mb-1 uppercase tracking-wider">{item.category}</span>
+              <h3 class="text-white text-xl md:text-2xl font-bold">{item.title}</h3>
+              <p class="text-gray-300 mt-2">{item.brand}</p>
+            </div>
+          </div>
+        )
+      })}
+    </div>
+
+    <div class="mt-16 text-center">
+      <a href="/portfolio" class="inline-flex items-center gap-2 px-8 py-4 rounded-sm border border-gold-500 text-gold-500 font-bold hover:bg-gold-500 hover:text-black transition-all duration-300">
+        Bekijk Volledig Portfolio
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+---
+---
+
+<section class="py-24 bg-black relative" id="contact">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Neem <span class="text-gradient-gold">Contact</span> Op</h2>
+      <p class="text-gray-400 text-lg">Klaar om uw auto te transformeren? Vraag vandaag nog een vrijblijvende offerte aan.</p>
+    </div>
+
+    <form class="bg-zinc-900/50 p-8 rounded-lg border border-zinc-800 shadow-xl backdrop-blur-sm">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="naam" class="block text-sm font-medium text-gray-300 mb-2">Naam *</label>
+          <input type="text" id="naam" name="naam" required
+            class="w-full bg-zinc-950 border border-zinc-800 rounded-md py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all"
+            placeholder="Uw volledige naam"
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-300 mb-2">E-mailadres *</label>
+          <input type="email" id="email" name="email" required
+            class="w-full bg-zinc-950 border border-zinc-800 rounded-md py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all"
+            placeholder="uw.email@voorbeeld.nl"
+          />
+        </div>
+      </div>
+      
+      <div class="mb-6">
+        <label for="kenteken" class="block text-sm font-medium text-gray-300 mb-2">Kenteken (optioneel)</label>
+        <input type="text" id="kenteken" name="kenteken"
+          class="w-full bg-zinc-950 border border-zinc-800 rounded-md py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all uppercase"
+          placeholder="AB-123-C"
+        />
+      </div>
+
+      <div class="mb-6">
+        <label for="bericht" class="block text-sm font-medium text-gray-300 mb-2">Bericht *</label>
+        <textarea id="bericht" name="bericht" rows="5" required
+          class="w-full bg-zinc-950 border border-zinc-800 rounded-md py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all"
+          placeholder="Vertel ons over uw wensen (bijv. ramen blinderen vanaf b-stijl, volledige wrap in mat zwart...)"
+        ></textarea>
+      </div>
+
+      <button type="submit" 
+        class="w-full bg-gold-500 hover:bg-gold-400 text-black font-bold py-4 px-8 rounded-md transition-colors duration-300 flex justify-center items-center gap-2 mt-4">
+        <span>Verstuur Aanvraag</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </form>
+  </div>
+</section>
