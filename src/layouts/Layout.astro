@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -25,7 +26,8 @@ const { title, description = 'Premium car tinting, wrapping, en detailing. Exclu
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <ClientRouter />
   </head>
-  <body class="font-sans antialiased min-h-screen flex flex-col selection:bg-amber-500 selection:text-black">
+  <body class="font-sans antialiased min-h-screen flex flex-col selection:bg-amber-500 selection:text-black relative">
     <slot />
+    <WhatsAppButton />
   </body>
 </html>
