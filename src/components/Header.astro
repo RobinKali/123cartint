@@ -2,48 +2,49 @@
 import { Menu, X } from 'lucide-react';
 ---
 
-<header class="fixed w-full z-50 top-0 transition-all duration-300" id="header">
+<header class="fixed w-full z-50 top-0 bg-black/75 backdrop-blur-md border-b border-zinc-800/60 transition-all duration-300" id="header">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-20">
       <!-- Logo -->
-      <a href="/" class="flex-shrink-0 flex items-center">
-        <span class="text-2xl font-bold tracking-tighter text-white">
+      <a href="/" class="flex-shrink-0 flex items-center group">
+        <span class="text-2xl font-bold tracking-tighter text-white group-hover:scale-105 transition-transform">
           123<span class="text-gold-500">CARTINT</span>
         </span>
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex space-x-7 items-center">
-        <a href="/" class="text-gray-300 hover:text-gold-500 transition-colors font-medium">Home</a>
-        <a href="/portfolio" class="text-gray-300 hover:text-gold-500 transition-colors font-medium">Portfolio</a>
+        <a href="/" class="text-gray-300 hover:text-gold-500 transition-colors font-medium text-sm">Home</a>
+        <a href="/portfolio" class="text-gray-300 hover:text-gold-500 transition-colors font-medium text-sm">Portfolio</a>
         <div class="relative group">
-          <button class="text-gray-300 hover:text-gold-500 transition-colors font-medium flex items-center gap-1">
+          <button type="button" class="text-gray-300 hover:text-gold-500 transition-colors font-medium text-sm flex items-center gap-1">
             Diensten
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-zinc-900 ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left -translate-y-2 group-hover:translate-y-0">
-            <div class="py-1" role="menu" aria-orientation="vertical">
-              <a href="/tinten" class="block px-4 py-2 text-sm text-gray-300 hover:bg-zinc-800 hover:text-gold-500">Ramen Tinten</a>
-              <a href="/wrappen" class="block px-4 py-2 text-sm text-gray-300 hover:bg-zinc-800 hover:text-gold-500">Car Wrapping</a>
-              <a href="/detailing" class="block px-4 py-2 text-sm text-gray-300 hover:bg-zinc-800 hover:text-gold-500">Cleaning & Detailing</a>
-            </div>
+          <div class="absolute left-0 mt-2 w-52 rounded-xl shadow-2xl bg-zinc-950/95 backdrop-blur-xl border border-zinc-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left -translate-y-2 group-hover:translate-y-0 p-2">
+            <a href="/tinten" class="block px-4 py-2.5 text-sm rounded-lg text-gray-300 hover:bg-zinc-900 hover:text-gold-400 transition-colors">Ramen Tinten</a>
+            <a href="/wrappen" class="block px-4 py-2.5 text-sm rounded-lg text-gray-300 hover:bg-zinc-900 hover:text-gold-400 transition-colors">Car Wrapping</a>
+            <a href="/detailing" class="block px-4 py-2.5 text-sm rounded-lg text-gray-300 hover:bg-zinc-900 hover:text-gold-400 transition-colors">Cleaning & Detailing</a>
           </div>
         </div>
-        <a href="/prijzen" class="text-gray-300 hover:text-gold-500 transition-colors font-medium">Prijzen</a>
-        <a href="/over-ons" class="text-gray-300 hover:text-gold-500 transition-colors font-medium">Over Ons</a>
-        <a href="/contact" class="px-6 py-2 rounded-md bg-gold-500 text-black font-semibold hover:bg-gold-400 transition-colors">
+        <a href="/prijzen" class="text-gray-300 hover:text-gold-500 transition-colors font-medium text-sm">Prijzen</a>
+        <a href="/over-ons" class="text-gray-300 hover:text-gold-500 transition-colors font-medium text-sm">Over Ons</a>
+        <a href="/contact" class="px-6 py-2.5 rounded-sm bg-gold-500 text-black font-bold text-sm hover:bg-gold-400 transition-all shadow-md shadow-gold-500/10">
           Offerte
         </a>
       </nav>
 
       <!-- Mobile menu button -->
       <div class="md:hidden flex items-center">
-        <button id="mobile-menu-button" class="text-gray-300 hover:text-white p-2">
-          <span class="sr-only">Open menu</span>
-          <svg class="h-6 w-6" id="menu-icon-open" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+        <button 
+          id="mobile-menu-button" 
+          class="text-gray-200 hover:text-gold-400 p-2 rounded-lg bg-zinc-900/80 border border-zinc-800 transition-colors"
+          aria-label="Menu openen"
+        >
+          <svg class="h-6 w-6" id="menu-icon-open" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
-          <svg class="h-6 w-6 hidden" id="menu-icon-close" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+          <svg class="h-6 w-6 hidden" id="menu-icon-close" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -51,49 +52,81 @@ import { Menu, X } from 'lucide-react';
     </div>
   </div>
 
-  <!-- Mobile Navigation -->
-  <div class="md:hidden hidden bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800" id="mobile-menu">
-    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-      <a href="/" class="block px-3 py-2 text-base font-medium text-white hover:text-gold-500">Home</a>
-      <a href="/portfolio" class="block px-3 py-2 text-base font-medium text-white hover:text-gold-500">Portfolio</a>
-      <a href="/tinten" class="block px-3 py-2 text-base font-medium text-white hover:text-gold-500">Ramen Tinten</a>
-      <a href="/wrappen" class="block px-3 py-2 text-base font-medium text-white hover:text-gold-500">Car Wrapping</a>
-      <a href="/detailing" class="block px-3 py-2 text-base font-medium text-white hover:text-gold-500">Cleaning & Detailing</a>
-      <a href="/prijzen" class="block px-3 py-2 text-base font-medium text-white hover:text-gold-500">Prijzen</a>
-      <a href="/over-ons" class="block px-3 py-2 text-base font-medium text-white hover:text-gold-500">Over Ons</a>
-      <a href="/contact" class="block px-3 py-2 text-base font-medium text-gold-500">Offerte Aanvragen</a>
+  <!-- Mobile Navigation Drawer with Frosted Glassmorphism -->
+  <div class="md:hidden hidden bg-zinc-950/98 backdrop-blur-2xl border-b border-zinc-800 shadow-2xl" id="mobile-menu">
+    <div class="px-4 pt-3 pb-6 space-y-2">
+      <a href="/" class="block px-4 py-3 rounded-lg text-base font-medium text-gray-200 hover:bg-zinc-900 hover:text-gold-400 transition-colors">Home</a>
+      <a href="/portfolio" class="block px-4 py-3 rounded-lg text-base font-medium text-gray-200 hover:bg-zinc-900 hover:text-gold-400 transition-colors">Portfolio</a>
+      
+      <div class="pt-2 pb-1 px-4 text-xs font-semibold text-gold-500/80 uppercase tracking-wider">Diensten</div>
+      <div class="pl-2 space-y-1">
+        <a href="/tinten" class="block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-300 hover:bg-zinc-900 hover:text-gold-400 transition-colors">Ramen Tinten</a>
+        <a href="/wrappen" class="block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-300 hover:bg-zinc-900 hover:text-gold-400 transition-colors">Car Wrapping</a>
+        <a href="/detailing" class="block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-300 hover:bg-zinc-900 hover:text-gold-400 transition-colors">Cleaning & Detailing</a>
+      </div>
+
+      <div class="pt-2 border-t border-zinc-800/80">
+        <a href="/prijzen" class="block px-4 py-3 rounded-lg text-base font-medium text-gray-200 hover:bg-zinc-900 hover:text-gold-400 transition-colors">Prijzen</a>
+        <a href="/over-ons" class="block px-4 py-3 rounded-lg text-base font-medium text-gray-200 hover:bg-zinc-900 hover:text-gold-400 transition-colors">Over Ons</a>
+      </div>
+
+      <div class="pt-3">
+        <a href="/contact" class="block w-full text-center px-4 py-3 rounded-md bg-gold-500 text-black font-bold text-base hover:bg-gold-400 transition-colors shadow-lg shadow-gold-500/20">
+          Vrijblijvende Offerte Aanvragen
+        </a>
+      </div>
     </div>
   </div>
 </header>
 
 <script>
-  // Add background on scroll
-  const header = document.getElementById('header');
-  
-  function updateHeader() {
-    if (window.scrollY > 10) {
-      header?.classList.add('bg-black/90', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-zinc-800');
-    } else {
-      header?.classList.remove('bg-black/90', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-zinc-800');
+  function setupHeader() {
+    const header = document.getElementById('header');
+    
+    function updateHeader() {
+      if (!header) return;
+      if (window.scrollY > 20) {
+        header.classList.add('bg-black/95', 'backdrop-blur-xl', 'shadow-2xl', 'shadow-black/50', 'border-zinc-800');
+        header.classList.remove('bg-black/75', 'border-zinc-800/60');
+      } else {
+        header.classList.remove('bg-black/95', 'backdrop-blur-xl', 'shadow-2xl', 'shadow-black/50');
+        header.classList.add('bg-black/75', 'border-zinc-800/60');
+      }
     }
-  }
 
-  window.addEventListener('scroll', updateHeader);
-  // Also run on page load for initial state
-  document.addEventListener('astro:page-load', updateHeader);
-  updateHeader();
+    window.addEventListener('scroll', updateHeader);
+    updateHeader();
 
-  // Mobile menu toggle
-  document.addEventListener('astro:page-load', () => {
+    // Mobile menu toggle
     const btn = document.getElementById('mobile-menu-button');
     const menu = document.getElementById('mobile-menu');
     const iconOpen = document.getElementById('menu-icon-open');
     const iconClose = document.getElementById('menu-icon-close');
 
     btn?.addEventListener('click', () => {
-      menu?.classList.toggle('hidden');
-      iconOpen?.classList.toggle('hidden');
-      iconClose?.classList.toggle('hidden');
+      const isHidden = menu?.classList.toggle('hidden');
+      iconOpen?.classList.toggle('hidden', !isHidden);
+      iconClose?.classList.toggle('hidden', isHidden);
+      
+      // Keep solid background when mobile menu is open
+      if (!isHidden && header) {
+        header.classList.add('bg-black/95');
+      } else {
+        updateHeader();
+      }
     });
-  });
+
+    // Close menu when clicking on navigation links
+    const mobileLinks = menu?.querySelectorAll('a');
+    mobileLinks?.forEach((link) => {
+      link.addEventListener('click', () => {
+        menu?.classList.add('hidden');
+        iconOpen?.classList.remove('hidden');
+        iconClose?.classList.add('hidden');
+        updateHeader();
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupHeader);
 </script>
