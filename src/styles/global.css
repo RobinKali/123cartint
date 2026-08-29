@@ -2,9 +2,9 @@
 
 @theme {
   --color-black: #0a0a0a;
-  --color-gold-400: #e8c653;
-  --color-gold-500: #d4af37;
-  --color-gold-600: #b8962c;
+  --color-red-400: #F45D5B;
+  --color-red-500: #EE312E;
+  --color-red-600: #C21D1A;
   --font-sans: 'Inter', sans-serif;
 }
 
@@ -15,7 +15,7 @@
 }
 
 @layer utilities {
-  .text-gradient-gold {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-400 to-gold-600;
+  .text-gradient-red {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-600;
   }
 }

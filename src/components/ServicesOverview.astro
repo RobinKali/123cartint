@@ -12,7 +12,7 @@ const services = [
       'Tot 99% UV-wering & hitte-reductie',
       'Levenslange garantie op loslaten & bubbels',
       'Computergestuurde precieze snijmallen',
-      'Keuze uit 5%, 20%, 35% en 70% tint'
+      'Keuze uit 5%, 15%, 35% en 70% tint'
     ]
   },
   {
@@ -50,15 +50,15 @@ const services = [
 
 <section class="py-24 bg-black relative overflow-hidden" id="diensten">
   <!-- Subtle background glow -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gold-500/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-red-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-xs font-semibold uppercase tracking-widest mb-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-semibold uppercase tracking-widest mb-4">
         Specialisaties
       </div>
       <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
-        Onze <span class="text-gradient-gold">Diensten</span>
+        Onze <span class="text-gradient-red">Diensten</span>
       </h2>
       <p class="text-gray-400 text-lg max-w-2xl mx-auto">
         Hoogwaardige automotive behandelingen uitgevoerd door gecertificeerde specialisten met passie voor perfectie.
@@ -67,7 +67,7 @@ const services = [
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       {services.map((service) => (
-        <div class="group bg-zinc-900/60 rounded-xl border border-zinc-800 hover:border-gold-500/50 transition-all duration-500 overflow-hidden flex flex-col hover:shadow-2xl hover:shadow-gold-500/5">
+        <div class="group bg-zinc-900/60 rounded-xl border border-zinc-800 hover:border-red-500/50 transition-all duration-500 overflow-hidden flex flex-col hover:shadow-2xl hover:shadow-red-500/5">
           <!-- Image Banner -->
           <div class="relative h-60 overflow-hidden">
             <img 
@@ -78,12 +78,12 @@ const services = [
             />
             <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent"></div>
             
-            <span class="absolute top-4 right-4 bg-zinc-950/80 backdrop-blur-md text-gold-400 border border-gold-500/30 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+            <span class="absolute top-4 right-4 bg-zinc-950/80 backdrop-blur-md text-red-400 border border-red-500/30 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
               {service.badge}
             </span>
 
             <div class="absolute bottom-4 left-6">
-              <span class="text-xs font-medium text-gold-500 uppercase tracking-wider">{service.subtitle}</span>
+              <span class="text-xs font-medium text-red-500 uppercase tracking-wider">{service.subtitle}</span>
               <h3 class="text-2xl font-bold text-white">{service.title}</h3>
             </div>
           </div>
@@ -98,7 +98,7 @@ const services = [
               <ul class="space-y-3 mb-8">
                 {service.features.map((feature) => (
                   <li class="flex items-start text-sm text-gray-300">
-                    <svg class="h-5 w-5 text-gold-500 mr-2.5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="h-5 w-5 text-red-500 mr-2.5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                     </svg>
                     <span>{feature}</span>
@@ -111,7 +111,7 @@ const services = [
             <div class="pt-6 border-t border-zinc-800/80 flex items-center justify-between gap-3">
               <a 
                 href={service.link}
-                class="inline-flex items-center gap-1 text-sm font-semibold text-white group-hover:text-gold-400 transition-colors"
+                class="inline-flex items-center gap-1 text-sm font-semibold text-white group-hover:text-red-400 transition-colors"
               >
                 <span>Meer informatie</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -121,7 +121,7 @@ const services = [
 
               <a 
                 href={service.priceLink}
-                class="inline-flex items-center text-xs font-semibold px-3 py-2 rounded bg-zinc-800 hover:bg-gold-500 hover:text-black text-gray-200 transition-colors"
+                class="inline-flex items-center text-xs font-semibold px-3 py-2 rounded bg-zinc-800 hover:bg-red-500 hover:text-black text-gray-200 transition-colors"
               >
                 Bekijk Tarieven
               </a>
@@ -134,7 +134,7 @@ const services = [
     <!-- Quick link bar -->
     <div class="mt-12 bg-gradient-to-r from-zinc-900/90 via-zinc-900/60 to-zinc-900/90 border border-zinc-800 rounded-xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-4">
-        <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center flex-shrink-0 text-gold-500">
+        <div class="w-12 h-12 rounded-lg bg-red-500/10 border border-red-500/30 flex items-center justify-center flex-shrink-0 text-red-500">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
         <div>
@@ -143,10 +143,10 @@ const services = [
         </div>
       </div>
       <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
-        <a href="/prijzen" class="w-full sm:w-auto text-center px-6 py-3 bg-gold-500 hover:bg-gold-400 text-black font-bold text-sm rounded-sm transition-colors">
+        <a href="/prijzen" class="w-full sm:w-auto text-center px-6 py-3 bg-red-500 hover:bg-red-400 text-black font-bold text-sm rounded-sm transition-colors">
           Tarievenoverzicht Bekijken
         </a>
-        <a href="https://giftcard.sumup.io/order/GWBQLDU/123cartint" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-6 py-3 border border-zinc-700 hover:border-gold-500 text-gray-200 hover:text-gold-400 font-semibold text-sm rounded-sm transition-colors flex items-center justify-center gap-2">
+        <a href="https://giftcard.sumup.io/order/GWBQLDU/123cartint" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-6 py-3 border border-zinc-700 hover:border-red-500 text-gray-200 hover:text-red-400 font-semibold text-sm rounded-sm transition-colors flex items-center justify-center gap-2">
           <span>🎁</span> Cadeaubon Bestellen
         </a>
       </div>
