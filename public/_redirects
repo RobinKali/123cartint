@@ -1,0 +1,34 @@
+# 123Cartint - Netlify URL Rewrites & Redirects
+
+# Canonical redirect (apex to www)
+http://123cartint.nl/*  https://www.123cartint.nl/:splat  301!
+https://123cartint.nl/* https://www.123cartint.nl/:splat  301!
+
+# Legacy common URL redirects (preserve SEO rankings)
+/home               /             301
+/index.html         /             301
+/index.php          /             301
+/overons            /over-ons     301
+/overons.html       /over-ons     301
+/over-ons.html      /over-ons     301
+/over-ons.php       /over-ons     301
+/contact.html       /contact      301
+/contact.php        /contact      301
+/tinten.html        /tinten       301
+/tinten.php         /tinten       301
+/blinderen          /tinten       301
+/blinderen.html     /tinten       301
+/wrappen.html       /wrappen      301
+/wrappen.php        /wrappen      301
+/wrapping           /wrappen      301
+/detailing.html     /detailing    301
+/detailing.php      /detailing    301
+/cleaning           /detailing    301
+/prijzen.html       /prijzen      301
+/prijzen.php        /prijzen      301
+/tarieven           /prijzen      301
+/portfolio.html     /portfolio    301
+/portfolio.php      /portfolio    301
+
+# Custom 404 handler
+/*                  /404          404
