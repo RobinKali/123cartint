@@ -36,7 +36,7 @@ export const fallbackPortfolioItems: PortfolioItem[] = [
   { id: '1', title: 'Mat Zwart Wrap', category: 'Wrappen', categoryLabel: 'Car Wrapping', brand: 'Porsche 911 GT3', imageUrl: '/images/portfolio/mat-zwart-wrap.jpg', altText: 'Porsche 911 GT3 mat zwart gewrapped' },
   { id: '2', title: 'Keramische Coating', category: 'Detailing', categoryLabel: 'Cleaning & Detailing', brand: 'Audi RS6', imageUrl: '/images/portfolio/keramische-coating.jpg', altText: 'Audi RS6 met keramische glascoating' },
   { id: '3', title: 'Ramen Tinten 20%', category: 'Tinten', categoryLabel: 'Ramen Tinten', brand: 'Mercedes G-Klasse', imageUrl: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=2000&auto=format&fit=crop', altText: 'Mercedes G-Klasse getinte autoramen' },
-  { id: '4', title: 'Satin Grey Wrap', category: 'Wrappen', categoryLabel: 'Car Wrapping', brand: 'BMW M4', imageUrl: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=2000&auto=format&fit=crop', altText: 'BMW M4 in Satin Grey car wrap' },
+  { id: '4', title: 'Hoogglans Zwart De-chrome', category: 'Dechrome', categoryLabel: 'Ontchromen', brand: '', imageUrl: '/de-chrome-hero.jpg', altText: 'Auto de-chrome hoogglans zwart' },
   { id: '5', title: 'Interieur Reiniging', category: 'Detailing', categoryLabel: 'Cleaning & Detailing', brand: 'Range Rover', imageUrl: '/images/portfolio/interieur-reiniging.jpg', altText: 'Range Rover dieptereiniging interieur' },
   { id: '6', title: 'Chameleon Tint', category: 'Tinten', categoryLabel: 'Ramen Tinten', brand: 'VW Golf GTI', imageUrl: '/images/portfolio/chameleon-tint.jpg', altText: 'VW Golf GTI met chameleon voorruit folie' },
   { id: '7', title: 'Dechrome & Styling Wrap', category: 'Wrappen', categoryLabel: 'Car Wrapping', brand: 'Audi RS3 Sportback', imageUrl: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=2000&auto=format&fit=crop', altText: 'Audi RS3 met dechrome styling' },
@@ -48,6 +48,7 @@ const categoryLabels: Record<string, string> = {
   Tinten: 'Ramen Tinten',
   Wrappen: 'Car Wrapping',
   Detailing: 'Cleaning & Detailing',
+  Dechrome: 'Ontchromen',
 };
 
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {

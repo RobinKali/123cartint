@@ -1,0 +1,138 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Auto Ontchromen (De-chrome) - 123Cartint">
+  <Header />
+
+  <main class="pt-20">
+    <!-- Service Hero -->
+    <div
+      class="relative h-[60vh] flex items-center justify-center overflow-hidden"
+    >
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-10"
+        >
+        </div>
+        <img
+          src="/de-chrome-hero.jpg"
+          alt="Auto onderdelen de-chromen / ontchromen"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+          Auto <span class="text-gradient-red">Ontchromen</span> (De-chrome)
+        </h1>
+        <p class="text-xl text-gray-300 max-w-2xl mb-8">
+          Geef uw auto een sportievere, agressievere look door chromen accenten hoogglans zwart te maken. Van logo's tot raamlijsten.
+        </p>
+        <a
+          href="/contact"
+          class="inline-block px-8 py-4 bg-red-500 text-black font-bold rounded-sm hover:bg-red-400 transition-colors"
+        >
+          Neem contact op
+        </a>
+      </div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="py-24 bg-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div>
+            <h2 class="text-3xl font-bold text-white mb-6">
+              Waarom kiezen voor ontchromen?
+            </h2>
+            <div class="space-y-8">
+              <div>
+                <h3 class="text-xl font-semibold text-red-500 mb-2">
+                  Sportieve Uitstraling
+                </h3>
+                <p class="text-gray-400">
+                  Zilveren of chromen accenten passen vaak niet bij het sportieve karakter van moderne auto's. Door deze 'shadow line' of 'night package' look te creëren, krijgt de auto direct een stoerder uiterlijk.
+                </p>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-red-500 mb-2">
+                  Omkeerbaar & Beschermend
+                </h3>
+                <p class="text-gray-400">
+                  Wij gebruiken hoogwaardige wrapfolies. Deze beschermen de originele chromen lijsten tegen weersinvloeden en steenslag, en zijn indien gewenst (bijvoorbeeld bij verkoop) weer schadevrij te verwijderen.
+                </p>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-red-500 mb-2">
+                  Volledig Op Maat
+                </h3>
+                <p class="text-gray-400">
+                  Van alleen de merklogo's en type-aanduiding tot een volledige de-chrome inclusief grill, raamlijsten, dakdragers en uitlaatsierstukken. Alles wordt exact op maat en naadloos gewrapped.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-zinc-900 p-8 rounded-lg border border-zinc-800">
+            <h3 class="text-2xl font-bold text-white mb-6">Wat we ontchromen</h3>
+            <ul class="space-y-4">
+              <li
+                class="flex justify-between items-center border-b border-zinc-800 pb-4"
+              >
+                <span class="text-gray-300">Raamlijsten</span>
+                <span class="text-red-500 font-semibold"
+                  >Populairste keuze</span
+                >
+              </li>
+              <li
+                class="flex justify-between items-center border-b border-zinc-800 pb-4"
+              >
+                <span class="text-gray-300">Grill & Omlijsting</span>
+                <span class="text-gray-500 text-sm">Voor een agressievere neus</span
+                >
+              </li>
+              <li
+                class="flex justify-between items-center border-b border-zinc-800 pb-4"
+              >
+                <span class="text-gray-300">Logo's & Type-aanduiding</span>
+                <span class="text-gray-500 text-sm"
+                  >Hoogglans of mat zwart</span
+                >
+              </li>
+              <li class="flex justify-between items-center pb-4">
+                <span class="text-gray-300">Dakdragers & Diffuser accenten</span>
+                <span class="text-gray-500 text-sm"
+                  >Complete black-out</span
+                >
+              </li>
+            </ul>
+            <p class="text-xs text-gray-500 mt-6 mb-6">
+              * Wij wrappen uitsluitend delen die hiervoor technisch geschikt zijn voor langdurige garantie.
+            </p>
+            <a
+              href="/prijzen#dechrome"
+              class="inline-flex items-center gap-2 text-red-500 hover:text-red-400 font-bold text-sm"
+            >
+              Bekijk prijzen voor ontchromen
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+              >
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

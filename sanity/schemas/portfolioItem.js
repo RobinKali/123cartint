@@ -18,6 +18,7 @@ export default {
           { title: 'Tinten', value: 'Tinten' },
           { title: 'Wrappen', value: 'Wrappen' },
           { title: 'Detailing', value: 'Detailing' },
+          { title: 'Dechrome', value: 'Dechrome' },
         ],
         layout: 'radio',
       },
