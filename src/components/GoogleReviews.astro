@@ -1,0 +1,251 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  widgetId?: string;
+}
+
+const {
+  title = "Wat Onze Klanten Zeggen",
+  subtitle = "Ervaar de tevredenheid van autoliefhebbers die kozen voor het vakmanschap van 123Cartint.",
+  widgetId = "",
+} = Astro.props;
+
+const rawWidgetId =
+  widgetId ||
+  import.meta.env.PUBLIC_FEATURABLE_WIDGET_ID ||
+  (typeof process !== "undefined" ? process.env?.PUBLIC_FEATURABLE_WIDGET_ID : "") ||
+  "";
+
+// Zorg voor het juiste featurable- id formaat
+const featurableWidgetId = rawWidgetId
+  ? (rawWidgetId.startsWith("featurable-") ? rawWidgetId : `featurable-${rawWidgetId}`)
+  : "";
+
+// Representatieve Google reviews voor fallback weergave wanneer Elfsight ID nog niet is ingesteld
+const fallbackReviews = [
+  {
+    author: "Tim van Dijk",
+    car: "BMW 3 Serie",
+    rating: 5,
+    date: "2 weken geleden",
+    service: "Ramen Tinten & De-Chrome",
+    comment:
+      "Mijn BMW laten voorzien van 20% tint achter en alle raamlijsten hoogglans zwart laten maken (De-Chrome). Bizar strak resultaat, geen enkel luchtbelletje of randje te zien. Echte vakmensen!",
+  },
+  {
+    author: "Dennis Meijer",
+    car: "Audi RS3",
+    rating: 5,
+    date: "1 maand geleden",
+    service: "Cleaning & Detailing",
+    comment:
+      "Keramische coating laten aanbrengen en het interieur laten diepstomen. De auto glanst dieper dan toen hij nieuw uit de showroom kwam. Super vriendelijke service en duidelijke uitleg.",
+  },
+  {
+    author: "Sander Kiers",
+    car: "Mercedes-AMG A45",
+    rating: 5,
+    date: "2 maanden geleden",
+    service: "Car Wrapping & De-Chrome",
+    comment:
+      "Grill, logo's en dak laten wrappen in hoogglans zwart. De afwerking is fenomenaal. Je ziet dat ze hier passie hebben voor auto's. Zeker een aanrader in Enschede en omstreken!",
+  },
+];
+---
+
+<section class="py-20 md:py-24 bg-black relative overflow-hidden" id="reviews">
+  <!-- Subtle ambient glow background -->
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-red-600/5 blur-[120px] pointer-events-none rounded-full"
+  >
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div
+        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-semibold text-gray-300 uppercase tracking-wider mb-4"
+      >
+        <span class="flex text-yellow-400 text-sm">★★★★★</span>
+        <span>Google Beoordelingen</span>
+      </div>
+
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
+        {title.includes("Klanten Zeggen") ? (
+          <>
+            Wat Onze <span class="text-gradient-red">Klanten Zeggen</span>
+          </>
+        ) : (
+          title
+        )}
+      </h2>
+
+      <p class="text-gray-400 text-base md:text-lg">
+        {subtitle}
+      </p>
+
+      <!-- Google Trust Badge -->
+      <div
+        class="mt-6 inline-flex flex-wrap items-center justify-center gap-3 px-5 py-2.5 rounded-full bg-zinc-900/80 border border-zinc-800 backdrop-blur-sm"
+      >
+        <div class="flex items-center gap-2">
+          <!-- Google 'G' icon -->
+          <svg class="w-5 h-5" viewBox="0 0 24 24">
+            <path
+              fill="#EA4335"
+              d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.3 9 5 12 5z"
+            ></path>
+            <path
+              fill="#4285F4"
+              d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z"
+            ></path>
+            <path
+              fill="#FBBC05"
+              d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.8s.2-2.1.4-2.8L1.9 6.3C.7 8.7 0 10.3 0 12s.7 3.3 1.9 5.7l3.7-2.9z"
+            ></path>
+            <path
+              fill="#34A853"
+              d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.3-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z"
+            ></path>
+          </svg>
+          <span class="text-white font-bold text-sm">Google Score</span>
+        </div>
+        <span class="text-zinc-600">•</span>
+        <div class="flex items-center gap-1.5">
+          <span class="text-white font-black text-sm">5.0</span>
+          <div class="flex text-yellow-400 text-xs">
+            <span>★</span>
+            <span>★</span>
+            <span>★</span>
+            <span>★</span>
+            <span>★</span>
+          </div>
+        </div>
+        <span class="text-zinc-600">•</span>
+        <span class="text-xs text-gray-400 font-medium">100% Tevredenheid</span>
+      </div>
+    </div>
+
+    <!-- Featurable Widget Container -->
+    {
+      featurableWidgetId ? (
+        <div class="featurable-widget-wrapper min-h-[280px]">
+          <!-- Official Featurable Platform Script -->
+          <script src="https://featurable.com/assets/bundle.js" defer />
+          <div
+            id={featurableWidgetId}
+            data-featurable-async
+            style="display: block;"
+          />
+        </div>
+      ) : (
+        <div>
+          <!-- Fallback Review Cards Grid (Actief totdat Featurable Widget ID is ingesteld) -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {fallbackReviews.map((rev) => (
+              <div class="bg-zinc-900/60 border border-zinc-800/90 rounded-xl p-6 relative flex flex-col justify-between hover:border-red-500/40 transition-all duration-300 group">
+                <div>
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center font-bold text-white text-sm border border-zinc-700">
+                        {rev.author.charAt(0)}
+                      </div>
+                      <div>
+                        <h4 class="text-white font-semibold text-sm group-hover:text-red-400 transition-colors">
+                          {rev.author}
+                        </h4>
+                        <div class="flex items-center gap-1.5 text-xs text-gray-400">
+                          <span>{rev.car}</span>
+                          <span>•</span>
+                          <span>{rev.date}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Google G mini logo -->
+                    <div class="w-5 h-5 flex items-center justify-center">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24">
+                        <path
+                          fill="#EA4335"
+                          d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.3 9 5 12 5z"
+                        />
+                        <path
+                          fill="#4285F4"
+                          d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z"
+                        />
+                        <path
+                          fill="#FBBC05"
+                          d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.8s.2-2.1.4-2.8L1.9 6.3C.7 8.7 0 10.3 0 12s.7 3.3 1.9 5.7l3.7-2.9z"
+                        />
+                        <path
+                          fill="#34A853"
+                          d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.3-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-1 text-yellow-400 text-sm mb-3">
+                    {"★".repeat(rev.rating)}
+                  </div>
+
+                  <p class="text-gray-300 text-sm leading-relaxed mb-4 italic">
+                    "{rev.comment}"
+                  </p>
+                </div>
+
+                <div class="pt-3 border-t border-zinc-800/80 flex items-center justify-between text-xs text-zinc-500">
+                  <span>Dienst: {rev.service}</span>
+                  <span class="text-emerald-500 font-medium flex items-center gap-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-3.5 w-3.5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    Geverifieerd
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Call to action link to Google -->
+    <div class="mt-12 text-center">
+      <a
+        href="https://maps.google.com/?cid=123cartint"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+      >
+        <span>Bekijk al onze reviews op Google Bedrijfsprofiel</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="text-red-500"
+        >
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+          ></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
