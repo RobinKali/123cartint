@@ -19,11 +19,11 @@ export const isSanityConfigured = Boolean(projectId && projectId.trim().length >
 
 export const sanityClient = isSanityConfigured
   ? createClient({
-      projectId,
-      dataset,
-      apiVersion,
-      useCdn: true,
-    })
+    projectId,
+    dataset,
+    apiVersion,
+    useCdn: true,
+  })
   : null;
 
 const builder = sanityClient ? imageUrlBuilder(sanityClient) : null;
@@ -60,7 +60,6 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
       _id,
       title,
       category,
-      brand,
       image,
       altText
     }`;

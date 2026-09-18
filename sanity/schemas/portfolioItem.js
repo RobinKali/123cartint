@@ -24,12 +24,6 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'brand',
-      title: 'Brand',
-      type: 'string',
-      description: 'Car brand (e.g., Porsche, Audi, Mercedes)',
-    },
-    {
       name: 'image',
       title: 'Image',
       type: 'image',
