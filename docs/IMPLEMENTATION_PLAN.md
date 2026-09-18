@@ -62,6 +62,7 @@ De component `GoogleReviews.astro` laadt het officiële script (`https://featura
 ### 2.1 SEO & Kwaliteitscontrole
 - Handmatige controle van de `<title>` en `<meta name="description">` tags op elke pagina om er zeker van te zijn dat ze kloppen, niet te lang/kort zijn en relevante zoekwoorden bevatten.
 - Controleren op ontbrekende of foutieve "alt"-teksten bij afbeeldingen.
+- Check ook nog even of de favicon goed staat voor de crawler en de handmatige stappen voor indexeren op google cloud console. 
 
 ### 2.2 Sanity CMS Project Activeren
 - Sanity project definitief aanmaken.

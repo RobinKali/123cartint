@@ -56,10 +56,10 @@ export default function Hero() {
           className="flex justify-center"
         >
           <a
-            href="#portfolio"
+            href="#intro"
             className="group inline-flex items-center justify-center gap-2.5 px-6 py-3 sm:px-8 sm:py-3.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800/90 text-white font-medium text-sm sm:text-base border border-zinc-700/80 hover:border-red-500/60 shadow-xl shadow-black/60 hover:shadow-red-500/10 backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95"
           >
-            <span>Bekijk ons werk</span>
+            <span>Ontdek ons werk</span>
             <svg
               className="w-4 h-4 text-red-500 group-hover:translate-x-0.5 transition-transform duration-200"
               fill="none"
@@ -80,14 +80,16 @@ export default function Hero() {
         transition={{ delay: 1.2, duration: 1 }}
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
       >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
-        >
-          <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
-        </motion.div>
+        <a href="#intro" aria-label="Scroll naar beneden">
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+          >
+            <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </motion.div>
+        </a>
       </motion.div>
     </div>
   );
