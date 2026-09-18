@@ -24,7 +24,7 @@ const filterCategories = [
   { id: "all", label: "Alle Projecten" },
   { id: "Tinten", label: "Ramen Tinten" },
   { id: "Wrappen", label: "Car Wrapping" },
-  { id: "Dechrome", label: "Ontchromen" },
+  { id: "De-Chrome", label: "De-Chrome" },
   { id: "Detailing", label: "Cleaning & Detailing" },
 ];
 ---
@@ -85,7 +85,7 @@ const filterCategories = [
             >
               <img
                 src={item.imageUrl}
-                alt={item.title}
+                alt={item.altText || item.title}
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
