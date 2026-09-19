@@ -1,5 +1,5 @@
 import { createClient } from '@sanity/client';
-import imageUrlBuilder from '@sanity/image-url';
+import { createImageUrlBuilder } from '@sanity/image-url';
 
 export interface PortfolioItem {
   id: string;
@@ -10,7 +10,7 @@ export interface PortfolioItem {
   altText?: string;
 }
 
-const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID || process.env.PUBLIC_SANITY_PROJECT_ID || '';
+const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID || process.env.PUBLIC_SANITY_PROJECT_ID || 'lwzdyp6o';
 const dataset = import.meta.env.PUBLIC_SANITY_DATASET || process.env.PUBLIC_SANITY_DATASET || 'production';
 const apiVersion = '2024-03-01';
 
@@ -25,7 +25,7 @@ export const sanityClient = isSanityConfigured
   })
   : null;
 
-const builder = sanityClient ? imageUrlBuilder(sanityClient) : null;
+const builder = sanityClient ? createImageUrlBuilder(sanityClient) : null;
 
 export function urlFor(source: any) {
   return builder ? builder.image(source) : null;
@@ -74,7 +74,11 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
     return items.map((item: any) => {
       let imageUrl = '/images/portfolio/mat-zwart-wrap.jpg';
       if (item.image && builder) {
-        imageUrl = builder.image(item.image).auto('format').fit('max').width(1200).url();
+        try {
+          imageUrl = builder.image(item.image).auto('format').fit('max').width(1200).url();
+        } catch {
+          imageUrl = '/images/portfolio/mat-zwart-wrap.jpg';
+        }
       }
 
       return {

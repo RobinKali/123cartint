@@ -29,10 +29,11 @@ Dit plan richt zich op de integratie van Google Reviews via **Featurable** (100%
 - Controleren op ontbrekende of foutieve "alt"-teksten bij afbeeldingen.
 - Check ook nog even of de favicon goed staat voor de crawler en de handmatige stappen voor indexeren op google cloud console. 
 
-### 2.2 Sanity CMS Project Activeren
-- Sanity project definitief aanmaken.
-- `PUBLIC_SANITY_PROJECT_ID` toevoegen aan de productie-omgeving.
-- Eerste echte projectfoto's uploaden via de Sanity Studio.
+### 2.2 Sanity CMS Project Activeren - [x] VOLTOOID
+- [x] Sanity project `lwzdyp6o` aangemaakt en gekoppeld in `.env` en `src/lib/sanity.ts`.
+- [x] Sanity Studio v3 geconfigureerd (`sanity.config.ts`, `sanity.cli.ts`, `sanity/schemas/portfolioItem.js`).
+- [x] Scripts toegevoegd aan `package.json` (`npm run studio` en `npm run studio:deploy`).
+- [x] Uitgebreide handleiding geschreven in [`docs/SANITY_WALKTHROUGH.md`](file:///c:/code/123cartint/docs/SANITY_WALKTHROUGH.md) inclusief instructies voor het Sanity Free Plan, CORS configuratie, Studio gebruik en Cloud86/Strato hosting.
 
 ### 2.3 Domeinnaam & E-mail Koppeling (Strato + Netlify/Eigen Server)
 - **A-record:** Laten verwijzen naar het Load Balancer IP van de hosting / Netlify.

@@ -17,6 +17,9 @@ const {
   limit,
 } = Astro.props;
 
+const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID || "lwzdyp6o";
+const dataset = import.meta.env.PUBLIC_SANITY_DATASET || "production";
+
 const allItems = await getPortfolioItems();
 const items = typeof limit === "number" ? allItems.slice(0, limit) : allItems;
 
@@ -71,6 +74,9 @@ const filterCategories = [
     <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[280px] md:auto-rows-[300px]"
       id="portfolio-grid"
+      data-project-id={projectId}
+      data-dataset={dataset}
+      data-limit={typeof limit === "number" ? limit : ""}
     >
       {
         items.map((item, index) => {
@@ -82,6 +88,7 @@ const filterCategories = [
                 isFeatured ? "featured-item md:col-span-2 md:row-span-2" : ""
               }`}
               data-category={item.category}
+              data-id={item.id}
             >
               <img
                 src={item.imageUrl}
@@ -162,17 +169,40 @@ const filterCategories = [
 </section>
 
 <script>
+  import { createImageUrlBuilder } from "@sanity/image-url";
+
+  const categoryLabels: Record<string, string> = {
+    Tinten: "Ramen Tinten",
+    Wrappen: "Car Wrapping",
+    Detailing: "Cleaning & Detailing",
+    "De-Chrome": "De-Chrome",
+    Dechrome: "De-Chrome",
+  };
+
+  function escapeHtml(str: string) {
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
   function setupPortfolioFilter() {
     const filterButtons = document.querySelectorAll<HTMLButtonElement>(
       ".portfolio-filter-btn",
     );
-    const items = document.querySelectorAll<HTMLElement>(".portfolio-item");
+    const container = document.getElementById("portfolio-grid");
     const noResults = document.getElementById("portfolio-no-results");
 
-    if (!filterButtons.length || !items.length) return;
+    if (!container) return;
+
+    let currentFilter = "all";
 
     function applyFilter(category: string) {
+      currentFilter = category;
       let visibleCount = 0;
+      const items = container!.querySelectorAll<HTMLElement>(".portfolio-item");
 
       // Update button active state
       filterButtons.forEach((btn) => {
@@ -215,7 +245,6 @@ const filterCategories = [
 
         if (matches) {
           item.classList.remove("hidden");
-          // When filtering specific category, reset span for uniform grid view
           if (category !== "all") {
             item.classList.remove("md:col-span-2", "md:row-span-2");
           } else if (item.classList.contains("featured-item")) {
@@ -240,7 +269,7 @@ const filterCategories = [
       });
     });
 
-    // Check URL query param or hash on initial load (e.g. #Tinten or ?filter=tinten)
+    // Check initial filter from URL or hash
     const urlParams = new URLSearchParams(window.location.search);
     const filterParam =
       urlParams.get("filter") || window.location.hash.replace("#", "");
@@ -252,6 +281,86 @@ const filterCategories = [
         applyFilter(match.dataset.filter);
       }
     }
+
+    // Client-side live sync met Sanity (voor Apache testserver & Cloud86)
+    async function syncLiveFromSanity() {
+      const projectId = container?.dataset.projectId || "lwzdyp6o";
+      const dataset = container?.dataset.dataset || "production";
+      const limitAttr = container?.dataset.limit;
+      const limit = limitAttr ? parseInt(limitAttr, 10) : undefined;
+
+      try {
+        const query = encodeURIComponent(
+          '*[_type == "portfolioItem"] | order(_createdAt desc){ _id, title, category, image, altText }'
+        );
+        const res = await fetch(
+          `https://${projectId}.apicdn.sanity.io/v2024-03-01/data/query/${dataset}?query=${query}`
+        );
+
+        if (!res.ok) return;
+
+        const data = await res.json();
+        const items = data?.result;
+        if (!Array.isArray(items) || items.length === 0) return;
+
+        const displayItems = typeof limit === "number" ? items.slice(0, limit) : items;
+
+        // Controleer of de getoonde items al identiek zijn aan de Sanity data
+        const currentElements = Array.from(container!.querySelectorAll<HTMLElement>(".portfolio-item"));
+        const currentIds = currentElements.map((el) => el.getAttribute("data-id"));
+        const newIds = displayItems.map((item) => item._id);
+
+        if (JSON.stringify(currentIds) === JSON.stringify(newIds)) {
+          return; // Al up-to-date, geen hertekening nodig
+        }
+
+        const builder = createImageUrlBuilder({ projectId, dataset });
+
+        const html = displayItems
+          .map((item, index) => {
+            const isFeatured = index === 0 || index === 3;
+            let imgUrl = "/images/portfolio/mat-zwart-wrap.jpg";
+            if (item.image) {
+              try {
+                imgUrl = builder.image(item.image).auto("format").fit("max").width(1200).url();
+              } catch {}
+            }
+            const catLabel = categoryLabels[item.category] || item.category || "Vakmanschap";
+            const featuredClass = isFeatured ? "featured-item md:col-span-2 md:row-span-2" : "";
+
+            return `
+              <div
+                class="portfolio-item group relative overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800/80 transition-all duration-500 ${featuredClass}"
+                data-category="${escapeHtml(item.category || "Tinten")}"
+                data-id="${escapeHtml(item._id)}"
+              >
+                <img
+                  src="${escapeHtml(imgUrl)}"
+                  alt="${escapeHtml(item.altText || item.title || "")}"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <span class="text-red-500 font-medium text-xs md:text-sm mb-1 uppercase tracking-wider">
+                    ${escapeHtml(catLabel)}
+                  </span>
+                  <h3 class="text-white text-xl md:text-2xl font-bold">
+                    ${escapeHtml(item.title || "")}
+                  </h3>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+
+        container!.innerHTML = html;
+        applyFilter(currentFilter);
+      } catch {
+        // Stille fallback: reeds gerenderde statische HTML blijft behouden
+      }
+    }
+
+    syncLiveFromSanity();
   }
 
   // Run on initial load and Astro client transitions
