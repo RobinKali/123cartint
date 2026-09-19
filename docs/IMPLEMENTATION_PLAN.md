@@ -24,10 +24,32 @@ Dit plan richt zich op de integratie van Google Reviews via **Featurable** (100%
 
 ## 2. Nog Openstaande Taken voor Definitieve Livegang (Later uit te voeren)
 
-### 2.1 SEO & Kwaliteitscontrole
-- Handmatige controle van de `<title>` en `<meta name="description">` tags op elke pagina om er zeker van te zijn dat ze kloppen, niet te lang/kort zijn en relevante zoekwoorden bevatten.
-- Controleren op ontbrekende of foutieve "alt"-teksten bij afbeeldingen.
-- Check ook nog even of de favicon goed staat voor de crawler en de handmatige stappen voor indexeren op google cloud console. 
+### 2.1 SEO, Kwaliteitscontrole & Security - [x] VOLTOOID
+- [x] **Vulnerability Patches & Dependencies:**
+  - `astro` geüpgraded naar `v7.2.10` (kritieke Sharp/AVIF Remote Code Execution kwetsbaarheid `GHSA-26w7-cxv4-gfx2` verholpen).
+  - `npm audit fix` succesvol uitgevoerd op alle afhankelijkheden.
+- [x] **Apache Security Hardening (`.htaccess`):**
+  - Security headers toegevoegd: `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`.
+  - Directory indexing uitgeschakeld (`Options -Indexes`).
+  - Gevoelige bestanden (`.env`, `.git`, `.htaccess`, `package.json`, etc.) strict afgeschermd.
+- [x] **Contactformulier Beveiliging & Backend:**
+  - Beveiligde PHP backend aangemaakt in `public/api/contact.php` met POST-only restrictie, honeypot anti-spam (`_gotcha`), input sanitatie en email validatie.
+  - `ContactForm.astro` voorzien van honeypot veld, AJAX afhandeling, laadstatus en duidelijke succesmelding.
+- [x] **SEO Titles & Meta Descriptions:**
+  - Dubbele title-bug in `Layout.astro` verholpen.
+  - Alle 10 pagina's voorzien van unieke, trefwoordrijke titles en meta descriptions (140-155 tekens) gericht op Enschede en Twente.
+  - Canonical URL tags (`<link rel="canonical">`) dynamisch gekoppeld.
+  - `404.astro` voorzien van `<meta name="robots" content="noindex, nofollow">`.
+- [x] **Open Graph & Twitter Cards:**
+  - Volledige social sharing tags geïntegreerd in `Layout.astro`.
+- [x] **Schema.org Structured Data:**
+  - Lokale bedrijfsdata (`AutoRepair` / `LocalBusiness`) als JSON-LD toegevoegd met adres, openingstijden, 5.0 Google score en contactgegevens.
+- [x] **Alt-teksten Controle:**
+  - Gecontroleerd en 100% dekkend bevonden op alle afbeeldingen.
+- [x] **Favicon & Googlebot Specificaties:**
+  - Voldoet aan veelvouden van 48px (o.a. `favicon-96x96.png`, SVG en Apple Touch).
+- [x] **Google Search Console Handleiding:**
+  - Uitgebreide instructies vastgelegd in [`docs/GOOGLE_INDEXERING_HANDLEIDING.md`](file:///c:/code/123cartint/docs/GOOGLE_INDEXERING_HANDLEIDING.md) voor Search Console, Strato DNS TXT verificatie en sitemap indienen. 
 
 ### 2.2 Sanity CMS Project Activeren - [x] VOLTOOID
 - [x] Sanity project `lwzdyp6o` aangemaakt en gekoppeld in `.env` en `src/lib/sanity.ts`.

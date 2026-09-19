@@ -22,3 +22,39 @@ ErrorDocument 404 /404.html
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
+
+# 5. Security Headers
+<IfModule mod_headers.c>
+  # Prevent MIME type sniffing
+  Header set X-Content-Type-Options "nosniff"
+  # Prevent clickjacking
+  Header set X-Frame-Options "SAMEORIGIN"
+  # Referrer policy
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  # Restrict unauthorized browser features
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# 6. Disable Directory Listings
+Options -Indexes
+
+# 7. Block Sensitive and Dot Files
+<FilesMatch "^\.">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+<FilesMatch "(package\.json|package-lock\.json|tsconfig\.json|astro\.config\.mjs|sanity\.config\.ts|sanity\.cli\.ts|\.env)">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

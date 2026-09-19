@@ -6,9 +6,70 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  noindex?: boolean;
 }
 
-const { title, description = 'Premium car tinting, wrapping, en detailing. Exclusiviteit en perfectie voor uw voertuig.' } = Astro.props;
+const {
+  title,
+  description = '123Cartint in Enschede: Specialist in autoruiten professioneel tinten, car wrapping, de-chromen en car detailing. Levenslange garantie op raamfolie.',
+  image = '/123cartint-og-logo.png',
+  noindex = false,
+} = Astro.props;
+
+const siteTitle = '123cartint';
+const formattedTitle = title.toLowerCase().includes('123cartint')
+  ? title
+  : `${title} | ${siteTitle}`;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(image, Astro.site);
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "@id": "https://www.123cartint.nl/#localbusiness",
+  "name": "123Cartint",
+  "alternateName": "123 Cartint Enschede",
+  "url": "https://www.123cartint.nl",
+  "logo": "https://www.123cartint.nl/logo-header.svg",
+  "image": "https://www.123cartint.nl/123cartint-og-logo.png",
+  "description": "Specialist in professioneel autoruiten tinten, car wrapping, de-chromen en car detailing in Enschede en heel Twente. Levenslange garantie op raamfolie.",
+  "telephone": "+31657273203",
+  "email": "info@123cartint.nl",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Veilingstraat 1",
+    "addressLocality": "Enschede",
+    "postalCode": "7545 LZ",
+    "addressCountry": "NL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 52.2133,
+    "longitude": 6.8778
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "08:30",
+      "closes": "18:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "bestRating": "5",
+    "reviewCount": "8",
+    "url": "https://maps.google.com/?cid=6034971144337241826"
+  },
+  "sameAs": [
+    "https://www.instagram.com/123cartint/",
+    "https://maps.google.com/?cid=6034971144337241826"
+  ]
+};
 ---
 
 <!doctype html>
@@ -16,8 +77,38 @@ const { title, description = 'Premium car tinting, wrapping, en detailing. Exclu
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{formattedTitle}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    )}
     <meta name="theme-color" content="#0A0A0A" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={formattedTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content={formattedTitle} />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:site_name" content="123Cartint" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={formattedTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
+    <meta name="twitter:image:alt" content={formattedTitle} />
+
+    <!-- Favicon & Icons -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -25,10 +116,15 @@ const { title, description = 'Premium car tinting, wrapping, en detailing. Exclu
     <meta name="apple-mobile-web-app-title" content="123Cartint" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} | 123cartint</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(localBusinessSchema)} />
+
     <ClientRouter />
   </head>
   <body class="font-sans antialiased min-h-screen flex flex-col selection:bg-red-500 selection:text-white relative">
@@ -36,3 +132,4 @@ const { title, description = 'Premium car tinting, wrapping, en detailing. Exclu
     <WhatsAppButton />
   </body>
 </html>
+

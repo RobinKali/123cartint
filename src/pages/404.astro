@@ -4,7 +4,11 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="404 - Pagina niet gevonden | 123cartint">
+<Layout
+  title="404 - Pagina niet gevonden | 123Cartint"
+  description="De opgevraagde pagina op 123cartint.nl kon niet worden gevonden."
+  noindex={true}
+>
   <Header />
 
   <main class="min-h-[75vh] flex items-center justify-center bg-black relative overflow-hidden pt-20">
