@@ -86,6 +86,6 @@ Omdat de website realtime foto's ophaalt uit Sanity, moet Sanity weten dat `123c
 
 ## Stap 5: Sanity Studio CMS voor de Klant
 
-- De Sanity Studio staat in de cloud op: **`https://123cartint.sanity.studio`**
+- De Sanity Studio staat in de cloud op: **`https://cartint123.sanity.studio`**
 - De klant kan inloggen met het eigen e-mailadres dat u als **Editor** heeft uitgenodigd in het Sanity dashboard (zie project Settings -> Members).
 - Wanneer de klant een nieuw portfolio-item toevoegt en op **Publish** klikt, is dit **onmiddellijk zichtbaar** op de live website zonder dat u opnieuw bestanden hoeft te uploaden of te builden.
