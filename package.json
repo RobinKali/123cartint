@@ -11,8 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "studio": "sanity dev",
-    "studio:build": "sanity build",
-    "studio:deploy": "sanity deploy"
+    "studio:build": "sanity build dist-studio",
+    "studio:deploy": "sanity deploy dist-studio"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.4",
