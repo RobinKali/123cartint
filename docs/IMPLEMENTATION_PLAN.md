@@ -4,56 +4,21 @@ Dit plan richt zich op de integratie van Google Reviews via **Featurable** (100%
 
 ---
 
-## 1. Google Reviews Integratie (Featurable)
+## 1. Google Reviews Integratie (Featurable) - [x] VOLTOOID
 
-We gebruiken de widget van **Featurable** ([featurable.com](https://featurable.com)). In tegenstelling tot Elfsight (dat limieten heeft op het aantal weergaven per maand in het gratis plan), biedt Featurable een ruim gratis plan met **onbeperkte weergaven** (unlimited page views) voor Google Reviews.
-
-De component `GoogleReviews.astro` laadt het officiële script (`https://featurable.com/assets/bundle.js`) en het widget-element (`<div id="featurable-..." data-featurable-async></div>`). Zolang er nog geen Widget ID is geconfigureerd, toont de website automatisch een donkere, gestylede fallback-sectie met een 5.0 Google rating badge en representatieve recensies.
-
-### Handmatige stappen voor Featurable configuratie (Door jou uit te voeren):
-
-1. **Gratis Account Aanmaken:**
-   - Ga naar [featurable.com](https://featurable.com/) en meld je gratis aan (klik op *Get Started Free*).
-2. **Nieuwe Widget Aanmaken:**
-   - Klik in je Featurable dashboard op **"Create Widget"**.
-   - Kies voor **Google Reviews**.
-3. **Bedrijf Koppelen:**
-   - Zoek naar **123Cartint** (locatie Enschede) en selecteer het juiste Google Bedrijfsprofiel.
-4. **Vormgeving & Stijl Instellen:**
-   - Kies bij *Layout* voor **Carousel** / **Slider**.
-   - Stel het thema in op **Dark Mode** en kies waar mogelijk accentkleuren die passen bij de huisstijl (`#ef4444` rood / zwart).
-5. **Widget Publiceren & Code/ID Ophalen:**
-   - Klik op **"Embed"** (of *Save & Embed*).
-   - Featurable toont een code-snippet die er zo uitziet:
-     ```html
-     <script src="https://featurable.com/assets/bundle.js" defer></script>
-     <div id="featurable-WIDGET_ID" data-featurable-async></div>
-     ```
-   - Kopieer jouw unieke **WIDGET_ID** (het deel achter `featurable-`, of de hele string `featurable-...`).
-6. **ID Toevoegen aan Project:**
-   - Voeg in jouw lokale `.env` (en straks bij de deployment environment variables op Netlify) de regel toe:
-     ```env
-     PUBLIC_FEATURABLE_WIDGET_ID="jouw-unieke-widget-id"
-     ```
-   - De website toont vanaf dat moment direct en automatisch jouw actuele live Google Reviews widget van Featurable!
-
----
-
-## Geïmplementeerde Componenten & Pagina's
-
-### [src/components/GoogleReviews.astro](file:///c:/code/123cartint/src/components/GoogleReviews.astro)
-- Featurable script (`https://featurable.com/assets/bundle.js`) en container (`id="featurable-{ID}" data-featurable-async`).
-- Maakt gebruik van `PUBLIC_FEATURABLE_WIDGET_ID` of `widgetId` prop.
-- Biedt een stijlvolle dark-mode fallback zolang het ID nog niet is ingevuld.
-
-### [src/pages/index.astro](file:///c:/code/123cartint/src/pages/index.astro)
-- `<GoogleReviews />` geïmplementeerd direct boven het contactformulier (`<ContactForm />`).
-
-### [src/pages/over-ons.astro](file:///c:/code/123cartint/src/pages/over-ons.astro)
-- `<GoogleReviews />` geïmplementeerd onderaan de pagina vóór de footer.
-
-### [.env.example](file:///c:/code/123cartint/.env.example)
-- Bevat `PUBLIC_FEATURABLE_WIDGET_ID=`.
+- [x] **Widget Integratie**: Featurable script en container geïmplementeerd in [`src/components/GoogleReviews.astro`](file:///c:/code/123cartint/src/components/GoogleReviews.astro).
+- [x] **Configuratie**: Widget ID `80e69fc0-a2f9-432f-b51e-e14c2d3a46a0` ingesteld als default en in `.env`.
+- [x] **Pagina's gekoppeld**:
+  - [x] **Homepage (`/`)**: Geplaatst boven het contactformulier ([`src/pages/index.astro`](file:///c:/code/123cartint/src/pages/index.astro)).
+  - [x] **Over Ons (`/over-ons`)**: Geplaatst onderaan de pagina vóór de footer ([`src/pages/over-ons.astro`](file:///c:/code/123cartint/src/pages/over-ons.astro)).
+- [x] **Client-Side Routing / Astro View Transitions Fix**:
+  - `astro:before-swap` en `astro:page-load` handlers toegevoegd zodat reviews direct getoond worden en correct gestyled blijven bij menunavigatie zonder handmatige refresh.
+- [x] **Google Bedrijfsprofiel Link**:
+  - CTA-link direct gekoppeld aan 123Cartint's geverifieerde profiel via Google CID `6034971144337241826`.
+- [x] **Fallback & Dark Mode**:
+  - 5.0 Google badge en fallback-weergave behouden voor maximale robuustheid.
+- [x] **Documentatie**:
+  - `.env.example` bijgewerkt met `PUBLIC_FEATURABLE_WIDGET_ID`.
 
 ---
 

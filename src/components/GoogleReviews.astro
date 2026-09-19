@@ -3,26 +3,28 @@ interface Props {
   title?: string;
   subtitle?: string;
   widgetId?: string;
+  profileUrl?: string;
 }
 
 const {
   title = "Wat Onze Klanten Zeggen",
   subtitle = "Bekijk de tevredenheid van de klanten van 123Cartint.",
   widgetId = "",
+  profileUrl = "https://maps.google.com/?cid=6034971144337241826",
 } = Astro.props;
 
 const rawWidgetId =
   widgetId ||
   import.meta.env.PUBLIC_FEATURABLE_WIDGET_ID ||
   (typeof process !== "undefined" ? process.env?.PUBLIC_FEATURABLE_WIDGET_ID : "") ||
-  "";
+  "80e69fc0-a2f9-432f-b51e-e14c2d3a46a0";
 
 // Zorg voor het juiste featurable- id formaat
 const featurableWidgetId = rawWidgetId
   ? (rawWidgetId.startsWith("featurable-") ? rawWidgetId : `featurable-${rawWidgetId}`)
   : "";
 
-// Representatieve Google reviews voor fallback weergave wanneer Elfsight ID nog niet is ingesteld
+// Representatieve Google reviews voor fallback weergave wanneer Featurable Widget ID nog niet is ingesteld
 const fallbackReviews = [
   {
     author: "Tim van Dijk",
@@ -132,7 +134,12 @@ const fallbackReviews = [
       featurableWidgetId ? (
         <div class="featurable-widget-wrapper min-h-[280px]">
           <!-- Official Featurable Platform Script -->
-          <script src="https://featurable.com/assets/bundle.js" defer />
+          <script
+            is:inline
+            src="https://featurable.com/assets/bundle.js"
+            defer
+            charset="UTF-8"
+          />
           <div
             id={featurableWidgetId}
             data-featurable-async
@@ -222,7 +229,7 @@ const fallbackReviews = [
     <!-- Call to action link to Google -->
     <div class="mt-12 text-center">
       <a
-        href="https://maps.google.com/?cid=123cartint"
+        href={profileUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
@@ -249,3 +256,133 @@ const fallbackReviews = [
     </div>
   </div>
 </section>
+
+<script>
+  // Cache voor Featurable CSS stijlen zodat we ze kunnen behouden tijdens Astro View Transitions
+  const WIN = window as any;
+  if (!WIN.__featurableStyles) {
+    WIN.__featurableStyles = [];
+  }
+
+  function captureFeaturableStyles() {
+    // 1. Zoek stijlen in head
+    const headStyles = document.querySelectorAll<HTMLStyleElement>('style[data-featurable-styles]');
+    if (headStyles.length > 0) {
+      WIN.__featurableStyles = Array.from(headStyles).map((s) => s.textContent || '');
+      return;
+    }
+    // 2. Zoek stijlen in bestaande shadow roots
+    const sw = document.querySelector<HTMLElement>('div[data-featurable-async] .shadow-wrapper');
+    if (sw && sw.shadowRoot) {
+      const shadowStyles = sw.shadowRoot.querySelectorAll<HTMLStyleElement>('style');
+      if (shadowStyles.length > 0) {
+        WIN.__featurableStyles = Array.from(shadowStyles).map((s) => s.textContent || '');
+      }
+    }
+  }
+
+  function ensureHeadStyles() {
+    captureFeaturableStyles();
+    if (!WIN.__featurableStyles || WIN.__featurableStyles.length === 0) return;
+
+    const existing = document.querySelectorAll('style[data-featurable-styles]');
+    if (existing.length === 0) {
+      WIN.__featurableStyles.forEach((cssText: string) => {
+        const style = document.createElement('style');
+        style.setAttribute('data-featurable-styles', 'true');
+        style.textContent = cssText;
+        document.head.appendChild(style);
+      });
+    }
+  }
+
+  function ensureShadowStyles(container: HTMLElement) {
+    const sw = container.querySelector<HTMLElement>('.shadow-wrapper');
+    if (!sw || !sw.shadowRoot) return;
+
+    const styles = sw.shadowRoot.querySelectorAll('style');
+    if (styles.length === 0 && WIN.__featurableStyles && WIN.__featurableStyles.length > 0) {
+      WIN.__featurableStyles.forEach((cssText: string) => {
+        const style = document.createElement('style');
+        style.textContent = cssText;
+        sw.shadowRoot!.appendChild(style);
+      });
+      window.dispatchEvent(new Event('resize'));
+    }
+  }
+
+  function initFeaturable() {
+    const containers = document.querySelectorAll<HTMLElement>('div[data-featurable-async]');
+    if (!containers || containers.length === 0) return;
+
+    captureFeaturableStyles();
+    ensureHeadStyles();
+
+    function renderContainers() {
+      const initFn = WIN.initializeFeaturableWidget;
+      if (typeof initFn === 'function') {
+        containers.forEach((container) => {
+          if (!container.querySelector('.shadow-wrapper')) {
+            try {
+              initFn(container);
+            } catch (err) {
+              console.warn('[Featurable] Widget initialisatiefout:', err);
+            }
+          }
+          // Controleer direct of shadow root styles heeft
+          ensureShadowStyles(container);
+          // Herhaal check na korte vertraging voor rendering cyclus
+          setTimeout(() => {
+            ensureShadowStyles(container);
+            window.dispatchEvent(new Event('resize'));
+          }, 60);
+          setTimeout(() => {
+            ensureShadowStyles(container);
+            window.dispatchEvent(new Event('resize'));
+          }, 250);
+        });
+        return true;
+      }
+      return false;
+    }
+
+    if (renderContainers()) return;
+
+    let script = document.querySelector<HTMLScriptElement>('script[src*="featurable.com/assets/bundle.js"]');
+    if (!script) {
+      script = document.createElement('script');
+      script.src = 'https://featurable.com/assets/bundle.js';
+      script.defer = true;
+      script.charset = 'UTF-8';
+      document.head.appendChild(script);
+    }
+
+    const onScriptReady = () => {
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        if (renderContainers() || attempts >= 20) {
+          clearInterval(interval);
+        }
+      }, 50);
+    };
+
+    script.addEventListener('load', onScriptReady, { once: true });
+  }
+
+  // Bewaar stijlen en injecteer ze in de nieuwe head vóór Astro de DOM swap uitvoert
+  document.addEventListener('astro:before-swap', (event: any) => {
+    captureFeaturableStyles();
+    if (WIN.__featurableStyles && WIN.__featurableStyles.length > 0 && event.newDocument) {
+      WIN.__featurableStyles.forEach((cssText: string) => {
+        const style = document.createElement('style');
+        style.setAttribute('data-featurable-styles', 'true');
+        style.textContent = cssText;
+        event.newDocument.head.appendChild(style);
+      });
+    }
+  });
+
+  // Initialiseer bij zowel de eerste pagina-load als na elke client-side route wissel in Astro
+  document.addEventListener('astro:page-load', initFeaturable);
+</script>
