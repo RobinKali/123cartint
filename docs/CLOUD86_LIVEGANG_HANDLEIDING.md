@@ -8,7 +8,7 @@ Deze handleiding legt stap-voor-stap uit hoe u de website **123cartint.nl** live
 
 - **Domeinnaam & E-mail beheer:** Strato (DNS & MX-records blijven hier).
 - **Webhosting & Bestanden:** Cloud86 (Apache / LiteSpeed webserver).
-- **CMS (Sanity Studio):** Gehost in de Sanity Cloud (`https://123cartint.sanity.studio`).
+- **CMS (Sanity Studio):** Gehost in de Sanity Cloud (`https://cartint123.sanity.studio`).
 - **Media & Foto's:** Sanity Content Lake & CDN (worden direct realtime in de browser van bezoekers geladen).
 
 ---
@@ -89,3 +89,38 @@ Omdat de website realtime foto's ophaalt uit Sanity, moet Sanity weten dat `123c
 - De Sanity Studio staat in de cloud op: **`https://cartint123.sanity.studio`**
 - De klant kan inloggen met het eigen e-mailadres dat u als **Editor** heeft uitgenodigd in het Sanity dashboard (zie project Settings -> Members).
 - Wanneer de klant een nieuw portfolio-item toevoegt en op **Publish** klikt, is dit **onmiddellijk zichtbaar** op de live website zonder dat u opnieuw bestanden hoeft te uploaden of te builden.
+
+---
+
+## Stap 6: Contactformulier & E-mailaflevering
+
+### Waarom kwamen testmails op de testserver niet aan?
+Op testservers (zoals `123cartint.robinkali.nl`) faalt e-mail meestal om twee redenen:
+1. Er draait geen geconfigureerde lokale mailserver (MTA/sendmail) op de testomgeving.
+2. E-mailservers van ontvangende partijen (zoals Strato voor `info@123cartint.nl`) blokkeren e-mails die afkomstig zijn van een ongeautoriseerd IP-adres (SPF/DMARC anti-spoofing beveiliging).
+
+### Hoe werkt dit bij de livegang op Cloud86?
+
+Op Cloud86 is de PHP `mail()` daemon standaard actief. Om te zorgen dat contactaanvragen direct in de inbox belanden en niet in de spamfilter verdwijnen, zijn er twee mogelijkheden:
+
+#### Optie A: Cloud86 PHP mail() met Strato SPF-aanpassing (Standaard)
+Als u `public/api/contact.php` gebruikt via de lokale mailserver van Cloud86:
+1. Log in bij Strato en ga naar het DNS-beheer van `123cartint.nl`.
+2. Zoek het **TXT (SPF) record** op en voeg het IP-adres van Cloud86 toe:
+   ```text
+   v=spf1 include:strato.de ip4:IP_VAN_CLOUD86 ~all
+   ```
+3. Hierdoor weet de mailserver dat Cloud86 geautoriseerd is om contactformulieren door te sturen naar `info@123cartint.nl`.
+
+#### Optie B: Geauthenticeerde SMTP via Strato (Aanbevolen voor 100% aflevergarantie)
+In plaats van de webserver zelf te laten mailen, laat u het contactscript via SMTP inloggen op de eigen Strato mailserver van de klant:
+- **SMTP Server:** `smtp.strato.de`
+- **Poort:** `465` (SSL) of `587` (STARTTLS)
+- **Gebruikersnaam:** `info@123cartint.nl`
+- **Wachtwoord:** Het wachtwoord van de mailbox bij Strato
+
+*Voordeel:* De e-mail wordt behandeld als een officiële, interne e-mail van Strato. Het komt gegarandeerd in de inbox aan en wordt nooit als spam aangemerkt.
+
+#### Optie C: Gratis Transactionele Maildienst (bijv. Web3Forms of Resend)
+- Geen serverinstellingen of mailbox-wachtwoorden nodig.
+- 100% aflevergarantie rechtstreeks naar `info@123cartint.nl`.
