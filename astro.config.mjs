@@ -6,7 +6,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://123cartint.robinkali.nl',
+  site: 'https://www.123cartint.nl',
   vite: {
     plugins: [tailwindcss()]
   },
