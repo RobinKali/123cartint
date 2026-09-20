@@ -208,21 +208,40 @@ import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
               >info@123cartint.nl</a
             >
           </li>
+          <li class="flex items-center text-gray-400 text-sm">
+            <svg
+              class="h-5 w-5 text-red-500 mr-3 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect><path
+                d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg
+            >
+            <span>KvK: 82037175</span>
+          </li>
         </ul>
       </div>
     </div>
 
     <div
-      class="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center"
+      class="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500"
     >
-      <p class="text-gray-500 text-sm mb-4 md:mb-0">
-        &copy; {new Date().getFullYear()} 123cartint. Alle rechten voorbehouden.
-      </p>
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-center sm:text-left">
+        <p>
+          &copy; {new Date().getFullYear()} 123cartint. Alle rechten voorbehouden.
+        </p>
+        <span class="hidden sm:inline text-zinc-700">•</span>
+        <p>KvK: 82037175</p>
+      </div>
       <a
         href="https://kaliwebworks.nl"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-gray-500 hover:text-gray-300 text-sm transition-colors"
+        class="text-gray-500 hover:text-gray-300 transition-colors"
       >
         Website by Kali Web Works
       </a>
