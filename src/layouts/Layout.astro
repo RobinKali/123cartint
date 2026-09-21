@@ -1,7 +1,7 @@
 ---
-import { ClientRouter } from 'astro:transitions';
-import WhatsAppButton from '../components/WhatsAppButton.astro';
-import '../styles/global.css';
+import { ClientRouter } from "astro:transitions";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -12,13 +12,13 @@ interface Props {
 
 const {
   title,
-  description = '123Cartint in Enschede: Specialist in autoruiten professioneel tinten, car wrapping, de-chromen en car detailing. Levenslange garantie op raamfolie.',
-  image = '/123cartint-og-logo.png',
+  description = "123Cartint in Enschede: Specialist in professioneel ramen blinderen, tinten, wrappen, de-chromen en detailing. Service op maat en levenslange garantie op raamfolie.",
+  image = "/123cartint-og-logo.png",
   noindex = false,
 } = Astro.props;
 
-const siteTitle = '123cartint';
-const formattedTitle = title.toLowerCase().includes('123cartint')
+const siteTitle = "123cartint";
+const formattedTitle = title.toLowerCase().includes("123cartint")
   ? title
   : `${title} | ${siteTitle}`;
 
@@ -29,47 +29,76 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "AutoRepair",
   "@id": "https://www.123cartint.nl/#localbusiness",
-  "name": "123Cartint",
-  "alternateName": "123 Cartint Enschede",
-  "url": "https://www.123cartint.nl",
-  "logo": "https://www.123cartint.nl/logo-header.svg",
-  "image": "https://www.123cartint.nl/123cartint-og-logo.png",
-  "description": "Specialist in professioneel autoruiten tinten, car wrapping, de-chromen en car detailing in Enschede en heel Twente. Levenslange garantie op raamfolie.",
-  "telephone": "+31657273203",
-  "email": "info@123cartint.nl",
-  "taxID": "82037175",
-  "priceRange": "€€",
-  "address": {
+  name: "123Cartint",
+  alternateName: "123 Cartint Enschede",
+  url: "https://www.123cartint.nl",
+  logo: "https://www.123cartint.nl/logo-header.svg",
+  image: "https://www.123cartint.nl/123cartint-og-logo.png",
+  description:
+    "Specialist in professioneel ramen blinderen, autoruiten tinten, wrappen (auto's, motoren en meer), de-chromen en detailing in Enschede (Veilingstraat 1) en heel Twente.",
+  telephone: "+31657273203",
+  email: "info@123cartint.nl",
+  taxID: "82037175",
+  priceRange: "€€",
+  address: {
     "@type": "PostalAddress",
-    "streetAddress": "Veilingstraat 1",
-    "addressLocality": "Enschede",
-    "postalCode": "7545 LZ",
-    "addressCountry": "NL"
+    streetAddress: "Veilingstraat 1",
+    addressLocality: "Enschede",
+    postalCode: "7545 LZ",
+    addressCountry: "NL",
   },
-  "geo": {
+  geo: {
     "@type": "GeoCoordinates",
-    "latitude": 52.2133,
-    "longitude": 6.8778
+    latitude: 52.2133,
+    longitude: 6.8778,
   },
-  "openingHoursSpecification": [
+  areaServed: [
+    { "@type": "City", name: "Enschede" },
+    { "@type": "City", name: "Hengelo" },
+    { "@type": "City", name: "Almelo" },
+    { "@type": "City", name: "Oldenzaal" },
+    { "@type": "AdministrativeArea", name: "Twente" },
+  ],
+  knowsAbout: [
+    "Auto wrappen",
+    "Wrappen",
+    "Wrapping",
+    "Motor wrappen",
+    "Ramen blinderen",
+    "Autoruiten tinten",
+    "Auto ramen blinderen",
+    "De-chromen",
+    "Car detailing",
+    "Keramische coating",
+    "Raamfolie",
+  ],
+  openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "opens": "08:30",
-      "closes": "18:00"
-    }
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
+      opens: "08:30",
+      closes: "18:00",
+    },
   ],
-  "aggregateRating": {
+  aggregateRating: {
     "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "bestRating": "5",
-    "reviewCount": "8",
-    "url": "https://maps.google.com/?cid=6034971144337241826"
+    ratingValue: "5.0",
+    bestRating: "5",
+    reviewCount: "8",
+    url: "https://maps.google.com/?cid=6034971144337241826",
   },
-  "sameAs": [
+  sameAs: [
+    "https://www.facebook.com/123cartint",
     "https://www.instagram.com/123cartint/",
-    "https://maps.google.com/?cid=6034971144337241826"
-  ]
+    "https://maps.google.com/?cid=6034971144337241826",
+  ],
 };
 ---
 
@@ -81,11 +110,16 @@ const localBusinessSchema = {
     <title>{formattedTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    {noindex ? (
-      <meta name="robots" content="noindex, nofollow" />
-    ) : (
-      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    )}
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta
+          name="robots"
+          content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        />
+      )
+    }
     <meta name="theme-color" content="#0A0A0A" />
 
     <!-- Open Graph / Facebook -->
@@ -119,18 +153,26 @@ const localBusinessSchema = {
     <meta name="generator" content={Astro.generator} />
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Schema.org LocalBusiness -->
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(localBusinessSchema)} />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(localBusinessSchema)}
+    />
 
     <ClientRouter />
   </head>
-  <body class="font-sans antialiased min-h-screen flex flex-col selection:bg-red-500 selection:text-white relative">
+  <body
+    class="font-sans antialiased min-h-screen flex flex-col selection:bg-red-500 selection:text-white relative"
+  >
     <slot />
     <WhatsAppButton />
   </body>
 </html>
-
