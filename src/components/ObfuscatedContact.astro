@@ -8,36 +8,56 @@ interface Props {
 
 const { type, value, display, class: className } = Astro.props;
 
-// We obfuscate the strings by encoding them in base64 on the server.
-// For type 'text', we just display the obfuscated text and decode it via JS.
-// For 'email' and 'tel', we create a link and decode the href.
-
+// Encode strings in base64 on the server so scrapers don't find plain text or mailto/tel links in raw HTML
 const encodedValue = Buffer.from(value).toString('base64');
 const encodedDisplay = display ? Buffer.from(display).toString('base64') : encodedValue;
 ---
 
-<span class="obfuscated-wrapper" data-type={type} data-value={encodedValue} data-display={encodedDisplay} data-class={className || ""}>
-  {/* Fallback for users without JS (though in 2026, very rare). Scrapers will see this or nothing. */}
-  <noscript>Beschermd tegen bots. Schakel JavaScript in om dit te bekijken.</noscript>
-</span>
+<obfuscated-contact
+  data-type={type}
+  data-value={encodedValue}
+  data-display={encodedDisplay}
+  data-class={className || ""}
+>
+</obfuscated-contact>
+
+<style>
+  obfuscated-contact {
+    display: contents;
+  }
+</style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const wrappers = document.querySelectorAll('.obfuscated-wrapper');
-    
-    wrappers.forEach((wrapper) => {
-      const type = wrapper.getAttribute('data-type');
-      const value = atob(wrapper.getAttribute('data-value') || '');
-      const display = atob(wrapper.getAttribute('data-display') || '');
-      const className = wrapper.getAttribute('data-class') || '';
-      
-      if (type === 'email') {
-        wrapper.innerHTML = `<a href="mailto:${value}" class="${className} hover:text-red-500 transition-colors">${display}</a>`;
-      } else if (type === 'tel') {
-        wrapper.innerHTML = `<a href="tel:${value}" class="${className}">${display}</a>`;
-      } else {
-        wrapper.innerHTML = `<span class="${className}">${display}</span>`;
+  class ObfuscatedContactElement extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.rendered) return;
+      this.dataset.rendered = "true";
+
+      const type = this.getAttribute('data-type');
+      const rawVal = this.getAttribute('data-value');
+      const rawDisp = this.getAttribute('data-display');
+      if (!rawVal) return;
+
+      try {
+        const value = atob(rawVal);
+        const display = rawDisp ? atob(rawDisp) : value;
+        const className = this.getAttribute('data-class') || '';
+
+        if (type === 'email') {
+          this.innerHTML = `<a href="mailto:${value}" class="${className}">${display}</a>`;
+        } else if (type === 'tel') {
+          this.innerHTML = `<a href="tel:${value}" class="${className}">${display}</a>`;
+        } else {
+          this.innerHTML = `<span class="${className}">${display}</span>`;
+        }
+      } catch (e) {
+        console.error('Error decoding obfuscated contact:', e);
       }
-    });
-  });
+    }
+  }
+
+  if (!customElements.get('obfuscated-contact')) {
+    customElements.define('obfuscated-contact', ObfuscatedContactElement);
+  }
 </script>
+
