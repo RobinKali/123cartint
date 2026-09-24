@@ -1,5 +1,6 @@
 ---
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import ObfuscatedContact from "./ObfuscatedContact.astro";
 ---
 
 <footer class="bg-zinc-950 border-t border-zinc-900 pt-16 pb-8">
@@ -187,11 +188,12 @@ import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
               ><rect width="14" height="20" x="5" y="2" rx="2" ry="2"
               ></rect><path d="M12 18h.01"></path></svg
             >
-            <a
-              href="tel:+31657273203"
+            <ObfuscatedContact
+              type="tel"
+              value="+31657273203"
+              display="+31 6 57 27 32 03"
               class="text-gray-400 hover:text-red-500 transition-colors"
-              >+31 6 57 27 32 03</a
-            >
+            />
           </li>
           <li class="flex items-center">
             <svg
@@ -206,11 +208,11 @@ import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
               ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
                 d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
             >
-            <a
-              href="mailto:info@123cartint.nl"
+            <ObfuscatedContact
+              type="email"
+              value="info@123cartint.nl"
               class="text-gray-400 hover:text-red-500 transition-colors"
-              >info@123cartint.nl</a
-            >
+            />
           </li>
           <li class="flex items-center text-gray-400 text-sm">
             <svg
@@ -226,7 +228,7 @@ import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
               ></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
               ></path></svg
             >
-            <span>KvK: 82037175</span>
+            <span>KvK: <ObfuscatedContact type="text" value="82037175" /></span>
           </li>
         </ul>
       </div>
