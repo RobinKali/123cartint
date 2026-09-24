@@ -33,22 +33,18 @@ const steps = [
 const guarantees = [
   {
     title: "Levenslange Garantie",
-    desc: "Op loslaten of luchtbellen bij wraps & raamfolie.",
     icon: "🛡️",
   },
   {
     title: "A-Kwaliteit Materialen",
-    desc: "Uitsluitend 3M, Avery, Madico.",
     icon: "✨",
   },
   {
     title: "Professionele werkplaats",
-    desc: "Geconditioneerde omgeving voor een foutloos resultaat.",
     icon: "🏢",
   },
   {
     title: "Klantwaardering 5/5 op Google",
-    desc: "Meer dan 4.000 tevreden klanten.",
     icon: "⭐",
   },
 ];
@@ -130,10 +126,9 @@ const guarantees = [
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {
           guarantees.map((item) => (
-            <div class="p-4 rounded-lg bg-zinc-900/50 border border-zinc-800/80 text-left hover:border-red-500/30 transition-colors">
-              <span class="text-2xl mb-3 block">{item.icon}</span>
-              <h4 class="text-white font-bold text-base mb-1">{item.title}</h4>
-              <p class="text-gray-400 text-xs leading-relaxed">{item.desc}</p>
+            <div class="p-4 rounded-lg bg-zinc-900/50 border border-zinc-800/80 text-left hover:border-red-500/30 transition-colors flex items-center gap-3">
+              <span class="text-2xl flex-shrink-0">{item.icon}</span>
+              <h4 class="text-white font-bold text-base">{item.title}</h4>
             </div>
           ))
         }
