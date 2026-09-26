@@ -38,7 +38,7 @@ Om te zorgen dat je website veilig gegevens en afbeeldingen mag ophalen uit Sani
      - Vink **Allow credentials** aan
      - Klik op **Save**
    - **Straks bij livegang (Cloud86):**
-     - Origin: `https://www.123cartint.nl` en `https://123cartint.nl` *(staat er inmiddels al in)*
+     - Origin: `https://123cartint.nl` en `https://www.123cartint.nl` *(staat er inmiddels al in)*
      - Vink **Allow credentials** aan
      - Klik op **Save**
 

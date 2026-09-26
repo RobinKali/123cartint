@@ -1,8 +1,8 @@
 # 123Cartint - Netlify URL Rewrites & Redirects
 
-# Canonical redirect (apex to www)
-http://123cartint.nl/*  https://www.123cartint.nl/:splat  301!
-https://123cartint.nl/* https://www.123cartint.nl/:splat  301!
+# Canonical redirect (www to apex)
+http://www.123cartint.nl/*  https://123cartint.nl/:splat  301!
+https://www.123cartint.nl/* https://123cartint.nl/:splat  301!
 
 # Legacy common URL redirects (preserve SEO rankings)
 /home               /             301

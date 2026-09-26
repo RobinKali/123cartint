@@ -58,3 +58,22 @@ Options -Indexes
     Deny from all
   </IfModule>
 </FilesMatch>
+
+# 8. Redirect www to non-www
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.123cartint\.nl$ [NC]
+  RewriteRule ^(.*)$ https://123cartint.nl/$1 [L,R=301]
+  
+  # Redirect HTML extension to non-HTML
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} \.html$
+  RewriteRule ^(.*)\.html$ /$1 [L,R=301]
+
+  # Redirect old PHP pages
+  RewriteCond %{REQUEST_URI} \.php$
+  RewriteCond %{REQUEST_URI} !^/api/
+  RewriteRule ^(.*)\.php$ /$1 [L,R=301]
+</IfModule>
+

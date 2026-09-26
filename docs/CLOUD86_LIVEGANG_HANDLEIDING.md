@@ -76,7 +76,6 @@ Omdat de website realtime foto's ophaalt uit Sanity, moet Sanity weten dat `123c
 1. Ga naar [sanity.io/manage](https://www.sanity.io/manage) en open project **`lwzdyp6o`**.
 2. Ga naar het tabblad **API** en scrol naar **CORS Origins**.
 3. Klik op **Add CORS origin** en voeg toe:
-   - `https://www.123cartint.nl` (vink *Allow credentials* aan).
    - `https://123cartint.nl` (vink *Allow credentials* aan).
 4. Klik op **Save**.
 

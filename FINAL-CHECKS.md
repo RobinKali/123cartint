@@ -21,7 +21,7 @@ Deze site is uitgebreid geanalyseerd voor de live-gang bij **Cloud86**. Hieronde
 - **Meta & Open Graph:** `Layout.astro` is perfect opgebouwd. Pagina's hebben unieke titels, omschrijvingen en Open Graph (Facebook/Twitter) tags, inclusief een standaard `og:image`.
 - **Canonical URLs:** Alle pagina's genereren dynamisch een schone `<link rel="canonical">` tag.
 - **Schema.org:** Er zit een zeer uitgebreide en correcte LocalBusiness JSON-LD markup op de pagina. Dit is perfect voor lokale vindbaarheid in Google en Google Maps in Twente/Enschede.
-- **Sitemap & Robots.txt:** De `robots.txt` verwijst netjes naar de sitemap, en Astro genereert de sitemap via de `@astrojs/sitemap` plugin o.b.v. het live domein (`https://www.123cartint.nl`).
+- **Sitemap & Robots.txt:** De `robots.txt` verwijst netjes naar de sitemap, en Astro genereert de sitemap via de `@astrojs/sitemap` plugin o.b.v. het live domein (`https://123cartint.nl`).
 
 ## 4. Performance & Code Kwaliteit ⚡
 - **Gzip & Caching:** Caching (tot wel een jaar voor afbeeldingen) en Gzip compressie staan al aan via de `.htaccess`. Dit zal zorgen voor snelle laadtijden op Cloud86.

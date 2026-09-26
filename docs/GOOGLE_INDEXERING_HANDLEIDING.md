@@ -7,8 +7,8 @@ Deze handleiding beschrijft stap-voor-stap hoe u de website **123cartint.nl** aa
 ## 1. Voorbereiding & Technische status
 
 De website is al technisch geoptimaliseerd volgens de richtlijnen van Google:
-- **XML Sitemap:** Automatisch gegenereerd op `https://www.123cartint.nl/sitemap-index.xml`
-- **Robots.txt:** Aanwezig op `https://www.123cartint.nl/robots.txt` met directe verwijzing naar de sitemap.
+- **XML Sitemap:** Automatisch gegenereerd op `https://123cartint.nl/sitemap-index.xml`
+- **Robots.txt:** Aanwezig op `https://123cartint.nl/robots.txt` met directe verwijzing naar de sitemap.
 - **Canonical URLs:** Elke pagina bevat een unieke `<link rel="canonical" href="...">`.
 - **Meta Tags & Social Sharing:** Elke pagina beschikt over unieke title tags, meta descriptions, Open Graph en Twitter Cards.
 - **Schema.org Structured Data:** `AutoRepair` / `LocalBusiness` JSON-LD data is ingebed met adres (**Veilingstraat 1, Enschede**), openingstijden, reviewscore (5.0 sterren) en contactgegevens.
@@ -51,7 +51,7 @@ Na stap 1 toont Google Search Console een **TXT-record** (bijvoorbeeld: `google-
 
 Zodra het eigendom is geverifieerd:
 1. Klik in het linkermenu van Search Console op **Sitemaps** (onder "Indexering").
-2. Bij **Nieuwe sitemap toevoegen** ziet u `https://www.123cartint.nl/`.
+2. Bij **Nieuwe sitemap toevoegen** ziet u `https://123cartint.nl/`.
 3. Vul daarachter in: `sitemap-index.xml`
 4. Klik op **Verzenden**.
 5. De status verandert na korte tijd in **Geslaagd** (groen). Google leest nu direct alle 9 pagina's in.
@@ -61,15 +61,15 @@ Zodra het eigendom is geverifieerd:
 ## 5. Stap 4: Directe URL-Inspectie & Indexering Aanvragen
 
 Om het proces te versnellen hoeft u niet te wachten tot de crawler vanzelf langskomt:
-1. Plak bovenin de zoekbalk van Search Console: `https://www.123cartint.nl/` en druk op Enter.
+1. Plak bovenin de zoekbalk van Search Console: `https://123cartint.nl/` en druk op Enter.
 2. Klik op de knop **Indexering aanvragen**.
 3. Doe dit eventueel ook voor de belangrijkste dienstenpagina's:
-   - `https://www.123cartint.nl/tinten/`
-   - `https://www.123cartint.nl/wrappen/`
-   - `https://www.123cartint.nl/de-chrome/`
-   - `https://www.123cartint.nl/detailing/`
-   - `https://www.123cartint.nl/prijzen/`
-   - `https://www.123cartint.nl/portfolio/`
+   - `https://123cartint.nl/tinten/`
+   - `https://123cartint.nl/wrappen/`
+   - `https://123cartint.nl/de-chrome/`
+   - `https://123cartint.nl/detailing/`
+   - `https://123cartint.nl/prijzen/`
+   - `https://123cartint.nl/portfolio/`
 
 ---
 
@@ -88,7 +88,7 @@ Google hanteert specifieke eisen voor de weergave van het bedrijfsicoontje (favi
 2. **Doorlooptijd Googlebot-Favicon:**
    - Google crawlt het favicon met een aparte crawler (`Googlebot-Image` / `Googlebot-Favicon`).
    - Het duurt gemiddeld **enkele dagen tot 2 weken** na de eerste pagina-indexering voordat Google het icoontje toont in de zoekresultaten.
-   - Zolang het bestand `https://www.123cartint.nl/favicon-96x96.png` bereikbaar is met HTTP status 200 en niet geblokkeerd wordt in `robots.txt`, gebeurt dit volledig automatisch.
+   - Zolang het bestand `https://123cartint.nl/favicon-96x96.png` bereikbaar is met HTTP status 200 en niet geblokkeerd wordt in `robots.txt`, gebeurt dit volledig automatisch.
 
 ---
 
@@ -97,7 +97,7 @@ Google hanteert specifieke eisen voor de weergave van het bedrijfsicoontje (favi
 Omdat 123cartint een fysieke specialist is in Enschede met een 5.0 rating (CID `6034971144337241826`), is de koppeling met Google Maps cruciaal voor lokale vindbaarheid in Twente:
 
 1. Log in op [Google Bedrijfsprofiel](https://business.google.com/).
-2. Controleer of de website-link exact staat ingesteld op: `https://www.123cartint.nl`.
+2. Controleer of de website-link exact staat ingesteld op: `https://123cartint.nl`.
 3. Zorg dat de categorieën overeenkomen:
    - Primaire categorie: **Autoruitenservice** of **Autobekleding en -interieur** / **Autoreparatie en -onderhoud**.
    - Secundaire categorieën: **Detailing service**, **Autoruitentintbedrijf**, **Car wrap-service**.
