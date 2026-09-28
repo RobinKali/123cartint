@@ -319,7 +319,7 @@ const filterCategories = [
         const html = displayItems
           .map((item, index) => {
             const isFeatured = index === 0 || index === 3;
-            let imgUrl = "/images/portfolio/mat-zwart-wrap.jpg";
+            let imgUrl = "/images/portfolio/mat-zwart-wrap.webp";
             if (item.image) {
               try {
                 imgUrl = builder.image(item.image).auto("format").fit("max").width(1200).url();
