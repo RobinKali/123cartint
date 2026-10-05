@@ -291,10 +291,10 @@ const filterCategories = [
 
       try {
         const query = encodeURIComponent(
-          '*[_type == "portfolioItem"] | order(_createdAt desc){ _id, title, category, image, altText }'
+          '*[_type == "portfolioItem"] | order(_createdAt desc){ _id, title, category, image, altText }',
         );
         const res = await fetch(
-          `https://${projectId}.apicdn.sanity.io/v2024-03-01/data/query/${dataset}?query=${query}`
+          `https://${projectId}.apicdn.sanity.io/v2024-03-01/data/query/${dataset}?query=${query}`,
         );
 
         if (!res.ok) return;
@@ -303,11 +303,16 @@ const filterCategories = [
         const items = data?.result;
         if (!Array.isArray(items) || items.length === 0) return;
 
-        const displayItems = typeof limit === "number" ? items.slice(0, limit) : items;
+        const displayItems =
+          typeof limit === "number" ? items.slice(0, limit) : items;
 
         // Controleer of de getoonde items al identiek zijn aan de Sanity data
-        const currentElements = Array.from(container!.querySelectorAll<HTMLElement>(".portfolio-item"));
-        const currentIds = currentElements.map((el) => el.getAttribute("data-id"));
+        const currentElements = Array.from(
+          container!.querySelectorAll<HTMLElement>(".portfolio-item"),
+        );
+        const currentIds = currentElements.map((el) =>
+          el.getAttribute("data-id"),
+        );
         const newIds = displayItems.map((item) => item._id);
 
         if (JSON.stringify(currentIds) === JSON.stringify(newIds)) {
@@ -322,11 +327,19 @@ const filterCategories = [
             let imgUrl = "/images/portfolio/mat-zwart-wrap.webp";
             if (item.image) {
               try {
-                imgUrl = builder.image(item.image).auto("format").fit("max").width(1200).url();
+                imgUrl = builder
+                  .image(item.image)
+                  .auto("format")
+                  .fit("max")
+                  .width(1200)
+                  .url();
               } catch {}
             }
-            const catLabel = categoryLabels[item.category] || item.category || "Vakmanschap";
-            const featuredClass = isFeatured ? "featured-item md:col-span-2 md:row-span-2" : "";
+            const catLabel =
+              categoryLabels[item.category] || item.category || "Vakmanschap";
+            const featuredClass = isFeatured
+              ? "featured-item md:col-span-2 md:row-span-2"
+              : "";
 
             return `
               <div
